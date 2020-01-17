@@ -13,8 +13,12 @@ namespace vita
 
     void Entity::Init()
     {
-        for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
+        std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin();
+
+        while (componentIterator != m_components.end())
         {
+            bool exceptionCaught = false;
+
             try
             {
                 (*componentIterator)->OnInit();
@@ -23,17 +27,27 @@ namespace vita
             catch (Exception& e)
             {
                 std::cout << "Exception: " << e.What() << std::endl;
-                (*componentIterator)->Kill();
+                std::cout << "The component has been removed." << std::endl;
+
+                componentIterator = m_components.erase(componentIterator);
+                exceptionCaught = true;
+            }
+
+            if (!exceptionCaught)
+            {
+                componentIterator++;
             }
         }
     }
 
     void Entity::Tick()
     {
-        std::list<std::shared_ptr<Component>>::iterator componentIterator;
+        std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin();
 
-        for (componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
+        while (componentIterator != m_components.end())
         {
+            bool exceptionCaught = false;
+
             try
             {
                 (*componentIterator)->OnTick();
@@ -42,18 +56,27 @@ namespace vita
             catch (Exception& e)
             {
                 std::cout << "Exception: " << e.What() << std::endl;
-                (*componentIterator)->Kill();
-                m_components.erase(componentIterator);
+                std::cout << "The component has been removed." << std::endl;
+
+                componentIterator = m_components.erase(componentIterator);
+                exceptionCaught = true;
+            }
+
+            if (!exceptionCaught)
+            {
+                componentIterator++;
             }
         }
     }
 
     void Entity::Display()
     {
-        std::list<std::shared_ptr<Component>>::iterator componentIterator;
+        std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin();
 
-        for (componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
+        while (componentIterator != m_components.end())
         {
+            bool exceptionCaught = false;
+
             try
             {
                 (*componentIterator)->OnDisplay();
@@ -62,19 +85,16 @@ namespace vita
             catch (Exception& e)
             {
                 std::cout << "Exception: " << e.What() << std::endl;
-                (*componentIterator)->Kill();
-                m_components.erase(componentIterator);
+                std::cout << "The component has been removed." << std::endl;
+
+                componentIterator = m_components.erase(componentIterator);
+                exceptionCaught = true;
+            }
+
+            if (!exceptionCaught)
+            {
+                componentIterator++;
             }
         }
-    }
-
-    void Entity::Kill()
-    {
-        m_aliveStatus = false;
-    }
-
-    bool Entity::IsAlive()
-    {
-        return m_aliveStatus;
     }
 }

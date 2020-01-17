@@ -7,10 +7,13 @@
 
 namespace vita
 {
+    class Core;
     class Resource;
 
     class Resources : public std::sr1::noncopyable
     {
+        friend class vita::Core;
+
         private:
             std::list<std::sr1::shared_ptr<Resource>> m_resources;
         public:
@@ -35,6 +38,7 @@ namespace vita
                 catch (Exception& e)
                 {
                     std::cout << "Exception: " << e.What() << std::endl;
+                    std::cout << "A nullptr "
                 }
             }
     };

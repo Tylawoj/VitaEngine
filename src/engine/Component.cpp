@@ -12,16 +12,6 @@ namespace vita
 //    OnUpdate();
 //}
 
-void Component::Kill()
-{
-    m_status = false;
-}
-
-bool Component::IsAlive()
-{
-    return m_status;
-}
-
 std::sr1::shared_ptr<Entity> Component::GetEntity()
 {
     return m_entity.lock();

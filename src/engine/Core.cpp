@@ -1,5 +1,8 @@
 #include "Core.h"
 #include "Entity.h"
+#include "Resource.h"
+#include "Resources.h"
+#include <chrono>
 
 namespace vita
 {
@@ -22,6 +25,9 @@ namespace vita
 
     void Core::Run()
     {
+        std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+        std::chrono::system_clock::time_point now;
+
         while (m_isRunning)
         {
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
@@ -34,7 +40,30 @@ namespace vita
                 (*entityIterator)->Display();
             }
 
-            for
+            now = std::chrono::system_clock::now();
+
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count() > 1000)
+            {
+                std::list<std::sr1::shared_ptr<Resource>>::iterator resourceIterator;
+
+                while (resourceIterator != m_resources->m_resources.end())
+                {
+                    bool resourceRemoved = false;
+
+                    if (resourceIterator->use_count() == 1)
+                    {
+                        resourceIterator = m_resources->m_resources.erase(resourceIterator);
+                        resourceRemoved = true;
+                    }
+
+                    if (!resourceRemoved)
+                    {
+                        resourceIterator++;
+                    }
+                }
+
+                start = std::chrono::system_clock::now();
+            }
         }
     }
 }

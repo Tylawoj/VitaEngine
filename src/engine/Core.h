@@ -7,7 +7,6 @@
 #include <SDL2/SDL.h>
 #include <sr1/noncopyable> ///< Noncopyable class is used to disallow from copying the Core to another pointer.
 #include <sr1/memory>
-
 #include <list>
 
 namespace vita
@@ -15,6 +14,7 @@ namespace vita
     class Entity;
     class Environment;
     class Keyboard;
+    class Resources;
     class Screen;
 
     class Core : public std::enable_shared_from_this<Core>, public std::sr1::noncopyable
@@ -33,6 +33,8 @@ namespace vita
         public:
             std::sr1::shared_ptr<Entity> AddEntity();
             static std::sr1::shared_ptr<Core> Initialize();
+            void Start();
+            void Stop();
             void Run();
 	};
 }
