@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="VitaEngine"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="afos2">
+				<Option output="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/afos2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include"/>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 afos2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="afos2/fast">
+				<Option output="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/afos2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include"/>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 afos2/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="VitaEngine">
+				<Option output="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/libVitaEngine.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include"/>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 VitaEngine"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="VitaEngine/fast">
+				<Option output="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/libVitaEngine.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include"/>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 VitaEngine/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rend">
+				<Option output="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/librend.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include"/>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 rend"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rend/fast">
+				<Option output="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/librend.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include"/>
+					<Add directory="/run/media/maciej/PendrivusMaciejus/VitaEngine/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 rend/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Buffer.cpp">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Buffer.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Context.cpp">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Context.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Exception.cpp">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Exception.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Mesh.cpp">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Mesh.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/RenderTexture.cpp">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/RenderTexture.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Shader.cpp">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Shader.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Texture.cpp">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Texture.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/TextureAdapter.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Util.cpp">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/Util.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/mathutil.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/shared/include/rend/rend.h">
+			<Option target="rend"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Camera.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Camera.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Component.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Component.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Core.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Core.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Entity.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Entity.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Environment.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Environment.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Exception.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Exception.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Keyboard.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Keyboard.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Material.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Material.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Mesh.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Mesh.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/MeshRenderer.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/MeshRenderer.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Resource.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Resource.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Resources.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Screen.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Screen.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Transform.cpp">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Transform.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/Vita.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/engine/stb_image.h">
+			<Option target="VitaEngine"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/src/game/main.cpp">
+			<Option target="afos2"/>
+		</Unit>
+		<Unit filename="/run/media/maciej/PendrivusMaciejus/VitaEngine/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

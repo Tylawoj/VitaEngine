@@ -1,0 +1,5 @@
+/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/CMakeFiles/rebuild_cache.dir
+/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/CMakeFiles/afos2.dir
+/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/CMakeFiles/edit_cache.dir
+/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/CMakeFiles/VitaEngine.dir
+/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild/CMakeFiles/rend.dir

@@ -15,7 +15,7 @@ std::sr1::shared_ptr<Context> Context::initialize()
 {
   std::sr1::shared_ptr<Context> rtn = std::sr1::make_shared<Context>();
 
-  if(glewInit() != GLEW_OK)
+  if (glewInit() != GLEW_OK)
   {
     throw Exception("Failed to initialize glew");
   }

@@ -1,7 +1,9 @@
 #include "Core.h"
+#include "Exception.h"
 #include "Entity.h"
 #include "Resource.h"
 #include "Resources.h"
+#include "Screen.h"
 #include <chrono>
 
 namespace vita
@@ -15,11 +17,20 @@ namespace vita
         return entity;
     }
 
-    std::sr1::shared_ptr<Core> Core::Init()
+    std::sr1::shared_ptr<Core> Core::Init(std::string _title, int _width, int _height, int _samples)
     {
         std::sr1::shared_ptr<Core> core = std::make_shared<Core>();
         core->m_self = core;
 
+        if (SDL_Init(SDL_INIT_VIDEO) < 0)
+        {
+            std::string exceptionMsg = "Engine Exception: Could not initialize SDL: ";
+            exceptionMsg += SDL_GetError();
+
+            throw Exception(exceptionMsg);
+        }
+
+        core->m_screen = std::make_shared<Screen>(_title, _width, _height, _samples);
         return core;
     }
 
@@ -67,10 +78,14 @@ namespace vita
                 (*entityIterator)->Tick();
             }
 
+            m_screen->ClearScreen();
+
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
             {
                 (*entityIterator)->Display();
             }
+
+            m_screen->GLSwapWindow();
 
             now = std::chrono::system_clock::now();
 
