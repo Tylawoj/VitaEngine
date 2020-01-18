@@ -4,6 +4,7 @@
 #include "Resource.h"
 #include "Resources.h"
 #include "Screen.h"
+#include <SDL2/SDL.h>
 #include <chrono>
 
 namespace vita
@@ -31,6 +32,11 @@ namespace vita
         }
 
         core->m_screen = std::make_shared<Screen>(_title, _width, _height, _samples);
+        core->m_context = rend::Context::initialize();
+
+        core->m_resources = std::make_shared<Resources>();
+        core->m_resources->m_core = core;
+
         return core;
     }
 
@@ -61,10 +67,23 @@ namespace vita
         }
     }
 
+    std::sr1::shared_ptr<rend::Context> Core::GetContext()
+    {
+        return m_context;
+    }
+
+
+    std::sr1::shared_ptr<Resources> Core::GetResources()
+    {
+        return m_resources;
+    }
+
     void Core::Run()
     {
         std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
         std::chrono::system_clock::time_point now;
+
+        SDL_Event event = { 0 };
 
         for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
         {
@@ -73,6 +92,14 @@ namespace vita
 
         while (m_isRunning)
         {
+            while (SDL_PollEvent(&event) != 0)
+            {
+                if (event.type == SDL_QUIT)
+                {
+                    m_isRunning = false;
+                }
+            }
+
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
             {
                 (*entityIterator)->Tick();

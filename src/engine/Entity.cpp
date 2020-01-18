@@ -36,18 +36,18 @@ namespace vita
                 (*componentIterator)->OnInit();
             }
 
-            catch (std::exception& e)
-            {
-                std::cout << "System Exception: " << e.what() << std::endl;
-                std::cout << "The component will be removed." << std::endl;
-
-                (*componentIterator)->Kill();
-            }
-
             catch (Exception& e)
             {
                 std::cout << "Engine Exception: " << e.What() << std::endl;
                 std::cout << "The component will been removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }
+
+            catch (std::exception& e)
+            {
+                std::cout << "System Exception: " << e.what() << std::endl;
+                std::cout << "The component will be removed." << std::endl;
 
                 (*componentIterator)->Kill();
             }
@@ -65,14 +65,6 @@ namespace vita
                 (*componentIterator)->OnTick();
             }
 
-            catch (std::exception& e)
-            {
-                std::cout << "System Exception: " << e.what() << std::endl;
-                std::cout << "The component will be removed." << std::endl;
-
-                (*componentIterator)->Kill();
-            }
-
             catch (Exception& e)
             {
                 std::cout << "Engine Exception: " << e.What() << std::endl;
@@ -80,6 +72,14 @@ namespace vita
 
                 (*componentIterator)->Kill();
             }
+
+            catch (std::exception& e)
+            {
+                std::cout << "System Exception: " << e.what() << std::endl;
+                std::cout << "The component will be removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }   
         }
 
         CheckForDeadComponents();
@@ -94,14 +94,6 @@ namespace vita
                 (*componentIterator)->OnDisplay();
             }
 
-            catch (std::exception& e)
-            {
-                std::cout << "System Exception: " << e.what() << std::endl;
-                std::cout << "The component will be removed." << std::endl;
-
-                (*componentIterator)->Kill();
-            }
-
             catch (Exception& e)
             {
                 std::cout << "Engine Exception: " << e.What() << std::endl;
@@ -109,6 +101,14 @@ namespace vita
 
                 (*componentIterator)->Kill();
             }
+
+            catch (std::exception& e)
+            {
+                std::cout << "System Exception: " << e.what() << std::endl;
+                std::cout << "The component will be removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            } 
         }
 
         CheckForDeadComponents();

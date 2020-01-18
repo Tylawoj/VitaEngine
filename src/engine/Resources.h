@@ -15,29 +15,33 @@ namespace vita
         friend class vita::Core;
 
         private:
+            std::sr1::weak_ptr<Core> m_core;
             std::list<std::sr1::shared_ptr<Resource>> m_resources;
+            void ChangeSeparator(std::string& _path);
         public:
-            template <typename T> std::sr1::shared_ptr<T> Load(std::string _string)
+            template <typename T> std::sr1::shared_ptr<T> Load(std::string& _path)
             {
                 try
                 {
                     std::sr1::shared_ptr<T> resource = std::make_shared<T>();
-                    resource->OnLoad(_string);
+                    ChangeSeparator(_path);
+                    resource->OnLoad(_path);
+                    resource->m_core = m_core;
                     m_resources.push_back(resource);
 
                     return resource;
                 }
 
-                catch (std::exception& e)
-                {
-                    std::cout << "System Exception: " << e.what() << std::endl;
-                    std::cout << "Could not load a resource with the specified path: " << _string << std::endl;
-                }
-
                 catch (Exception& e)
                 {
                     std::cout << "Engine Exception: " << e.What() << std::endl;
-                    std::cout << "Could not load a resource with the specified path: " << _string << std::endl;
+                    std::cout << "Could not load a resource with the specified path: " << _path << std::endl;
+                }
+
+                catch (std::exception& e)
+                {
+                    std::cout << "System Exception: " << e.what() << std::endl;
+                    std::cout << "Could not load a resource with the specified path: " << _path << std::endl;
                 }
             }
     };

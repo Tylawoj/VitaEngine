@@ -1,1 +1,0 @@
-/usr/bin/g++  -g  -rdynamic CMakeFiles/afos2.dir/src/game/main.cpp.o  -o afos2  -Wl,-rpath,/run/media/maciej/PendrivusMaciejus/VitaEngine/debugBuild libVitaEngine.so librend.so -lSDL2 -lGLEW -lGL -lopenal 

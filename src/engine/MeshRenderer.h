@@ -12,7 +12,7 @@ namespace vita
             std::sr1::shared_ptr<Mesh> m_mesh;
             std::sr1::shared_ptr<Material> m_material;
         public:
-            void OnInit();
+            MeshRenderer(std::sr1::shared_ptr<Mesh> _mesh, std::sr1::shared_ptr<Material> _material);
             void OnDisplay();
             void SetMesh(std::sr1::shared_ptr<Mesh> _mesh);
             void SetMaterial(std::sr1::shared_ptr<Material> _material);

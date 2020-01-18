@@ -34,29 +34,19 @@ namespace vita
 
             template<typename T> std::sr1::shared_ptr<T> GetComponent()
             {
-                try
+                for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
                 {
-                    for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
-                    {
-                        std::sr1::shared_ptr<T> rtn = std::dynamic_pointer_cast<T>(*componentIterator);
+                    std::sr1::shared_ptr<T> rtn = std::dynamic_pointer_cast<T>(*componentIterator);
 
-                        if (rtn != NULL)
-                        {
-                            return rtn;
-                        }
+                    if (rtn != NULL)
+                    {
+                        return rtn;
                     }
 
-                    throw Exception("No components of specified type found inside of an entity.");
-                }
-
-                catch (std::exception& e)
-                {
-                    std::cout << "System Exception: " << e.what() << std::endl;
-                }
-
-                catch (Exception& e)
-                {
-                    std::cout << "Engine Exception: " << e.What() << std::endl;
+                    else
+                    {
+                        return nullptr;
+                    }
                 }
             }
 

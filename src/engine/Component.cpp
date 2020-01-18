@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "Camera.h"
 #include "Core.h"
 #include "Entity.h"
 #include "Environment.h"
@@ -15,6 +16,16 @@ std::sr1::shared_ptr<Entity> Component::GetEntity()
 std::sr1::shared_ptr<Core> Component::GetCore()
 {
     return m_entity.lock()->GetCore();
+}
+
+std::sr1::shared_ptr<Resources> Component::GetResources()
+{
+    return m_entity.lock()->GetCore()->GetResources();
+}
+
+std::sr1::shared_ptr<Camera> Component::GetCurrentCamera()
+{
+    return m_entity.lock()->GetCore()->GetCurrentCamera();
 }
 
 bool Component::IsAlive()
