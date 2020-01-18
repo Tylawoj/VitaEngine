@@ -1,9 +1,11 @@
+#include "Component.h"
+#include "Exception.h"
 #include <sr1/memory>
+#include <memory>
 #include <list>
 
 namespace vita
 {
-    class Component;
     class Core;
 
     class Entity : public std::enable_shared_from_this<Entity>
@@ -14,7 +16,7 @@ namespace vita
             std::list<std::shared_ptr<Component>> m_components;
             std::sr1::weak_ptr<Core> m_core;
             std::sr1::weak_ptr<Entity> m_self;
-
+            void CheckForDeadComponents();
         public:
             void Init();
             void Display();
@@ -23,37 +25,43 @@ namespace vita
 
             template <typename T, typename... A> std::sr1::shared_ptr<T> AddComponent(A... arguments)
             {
-                std::sr1::shared_ptr<T> component = std::make_shared<T>();
+                std::sr1::shared_ptr<T> component = std::make_shared<T>(arguments...);
                 component->m_entity = m_self;
                 m_components.push_back(component);
-
-                component->OnInitialize(arguments...);
 
                 return component;
             }
 
             template<typename T> std::sr1::shared_ptr<T> GetComponent()
             {
-                for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
+                try
                 {
-
-                }
-                    for (auto& c : components)
+                    for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
                     {
-                        std::shared_ptr<T> rtn1 = std::dynamic_pointer_cast<T>(c);
-                        if (rtn1 != NULL)
+                        std::sr1::shared_ptr<T> rtn = std::dynamic_pointer_cast<T>(*componentIterator);
+
+                        if (rtn != NULL)
                         {
-                            return rtn1;
+                            return rtn;
                         }
                     }
 
-                    std::cout << "Does not Exist" << std::endl;
+                    throw Exception("No components of specified type found inside of an entity.");
+                }
 
-                    throw std::exception();
+                catch (std::exception& e)
+                {
+                    std::cout << "System Exception: " << e.what() << std::endl;
+                }
+
+                catch (Exception& e)
+                {
+                    std::cout << "Engine Exception: " << e.What() << std::endl;
+                }
             }
 
 //        template <typename T, typename A> std::shared_ptr<T> addComponent(A a);
 //        template <typename T, typename A, typename B> std::shared_ptr<T> addComponent(A a, B b);
 //        template <typename T, typename A, typename B, typename C> std::shared_ptr<T> addComponent(A a, B b, C c);
-    }
-};
+    };
+}

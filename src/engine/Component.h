@@ -13,8 +13,11 @@ namespace vita
 
     class Component
     {
+        friend class vita::Entity;
+
         private:
             std::sr1::weak_ptr<Entity> m_entity;
+            bool m_alive;
 
         public:
             virtual void OnInit() {}
@@ -22,13 +25,14 @@ namespace vita
             virtual void OnTick() {}
             virtual void OnDisplay() {}
             bool IsAlive();
+            void Kill();
 
             std::sr1::shared_ptr<Entity> GetEntity();
             std::sr1::shared_ptr<Core> GetCore();
             std::sr1::shared_ptr<Keyboard> GetKeyboard();
             std::sr1::shared_ptr<Environment> GetEnvironment();
             std::sr1::shared_ptr<Transform> GetTransform();
-    }
-};
+    };
+}
 
 #endif

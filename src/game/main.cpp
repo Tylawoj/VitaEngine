@@ -5,9 +5,8 @@ using namespace vita;
 
 int main()
 {
-
     // Initialize our engine
-    std::shared_ptr<Core> core = Core::Initialize();
+    std::shared_ptr<Core> core = Core::Init();
 
     // Create a single in-game object
     std::shared_ptr<Entity> entity = core->AddEntity();
@@ -16,8 +15,8 @@ int main()
     std::shared_ptr<Screen> screen = entity->AddComponent<Screen>();
 
     // Start the engine's main loop
+    core->Start();
     core->Run();
-
 
 	return 0;
 }

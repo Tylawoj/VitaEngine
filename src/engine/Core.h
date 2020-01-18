@@ -1,7 +1,5 @@
 /** @file Core.h
  *  @brief Core class responsible for storing the core of the engine, along with its required members.
- *
- *  Core stores all of the Entities in the game,
  */
 
 #include <SDL2/SDL.h>
@@ -11,6 +9,7 @@
 
 namespace vita
 {
+    class Camera;
     class Entity;
     class Environment;
     class Keyboard;
@@ -22,17 +21,20 @@ namespace vita
         friend class vita::Entity;
 
         private:
+            std::sr1::weak_ptr<Camera> m_currentCamera;
             std::sr1::weak_ptr<Core> m_self;
             std::sr1::shared_ptr<Environment> m_environment;
             std::list<std::sr1::shared_ptr<Entity>> m_entities;
             std::sr1::shared_ptr<Keyboard> m_keyboard;
             std::sr1::shared_ptr<Resources> m_resources;
             std::sr1::shared_ptr<Screen> m_screen;
-            SDL_Window* m_window;
             bool m_isRunning;
+            void CheckForDeadResources();
         public:
             std::sr1::shared_ptr<Entity> AddEntity();
-            static std::sr1::shared_ptr<Core> Initialize();
+            std::sr1::shared_ptr<Camera> GetCurrentCamera();
+            std::sr1::shared_ptr<Resources> GetResources();
+            static std::sr1::shared_ptr<Core> Init();
             void Start();
             void Stop();
             void Run();

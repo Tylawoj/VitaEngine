@@ -1,3 +1,6 @@
+#ifndef _VITA_EXCEPTION_H_
+#define _VITA_EXCEPTION_H_
+
 #include <exception>
 #include <string>
 
@@ -13,3 +16,5 @@ namespace vita
             virtual const char* What() const throw();
     };
 }
+
+#endif

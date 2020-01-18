@@ -2,12 +2,5 @@
 
 namespace vita
 {
-    Resource::Resource()
-    {
-    }
 
-
-    Resource::~Resource()
-    {
-    }
 }

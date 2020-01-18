@@ -59,11 +59,11 @@ namespace vita
         return model;
     }
 
-//    void Transform::SetAsChildrenOf(std::sr1::shared_ptr<Entity> _parent)
-//    {
-//        m_parent = _parent;
-//        m_setAsChild = true;
-//    }
+    void Transform::SetAsChildrenOf(std::sr1::shared_ptr<Entity> _parent)
+    {
+        m_parent = _parent;
+        m_setAsChild = true;
+    }
 
     void Transform::Rotate(glm::vec3 _rotation)
     {
@@ -85,12 +85,12 @@ namespace vita
         m_setAsChild = false;
     }
 
-//    Transform::Transform(glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, std::sr1::shared_ptr<Entity> _parent)
-//    {
-//        m_position = _position;
-//        m_rotation = _rotation;
-//        m_scale = _scale;
-//        m_setAsChild = true;
-//        m_parent = _parent;
-//    }
+    Transform::Transform(glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale, std::sr1::shared_ptr<Entity> _parent)
+    {
+        m_position = _position;
+        m_rotation = _rotation;
+        m_scale = _scale;
+        m_setAsChild = true;
+        m_parent = _parent;
+    }
 }

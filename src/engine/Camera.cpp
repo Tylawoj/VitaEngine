@@ -3,12 +3,5 @@
 
 namespace vita
 {
-    Camera::Camera()
-    {
-    }
 
-
-    Camera::~Camera()
-    {
-    }
 }

@@ -15,7 +15,7 @@ namespace vita
         return entity;
     }
 
-    std::sr1::shared_ptr<Core> Core::Initialize()
+    std::sr1::shared_ptr<Core> Core::Init()
     {
         std::sr1::shared_ptr<Core> core = std::make_shared<Core>();
         core->m_self = core;
@@ -23,10 +23,42 @@ namespace vita
         return core;
     }
 
+    void Core::Start()
+    {
+        m_isRunning = true;
+    }
+
+    void Core::Stop()
+    {
+        m_isRunning = false;
+    }
+
+    void Core::CheckForDeadResources()
+    {
+        for (std::list<std::sr1::shared_ptr<Resource>>::iterator resourceIterator = m_resources->m_resources.begin();
+             resourceIterator != m_resources->m_resources.end();)
+        {
+            if (!(*resourceIterator)->IsAlive())
+            {
+                resourceIterator = m_resources->m_resources.erase(resourceIterator);
+            }
+
+            else
+            {
+                resourceIterator++;
+            }
+        }
+    }
+
     void Core::Run()
     {
         std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
         std::chrono::system_clock::time_point now;
+
+        for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
+        {
+            (*entityIterator)->Init();
+        }
 
         while (m_isRunning)
         {
@@ -46,21 +78,16 @@ namespace vita
             {
                 std::list<std::sr1::shared_ptr<Resource>>::iterator resourceIterator;
 
-                while (resourceIterator != m_resources->m_resources.end())
+                for (std::list<std::sr1::shared_ptr<Resource>>::iterator resourceIterator = m_resources->m_resources.begin();
+                     resourceIterator != m_resources->m_resources.end(); resourceIterator++)
                 {
-                    bool resourceRemoved = false;
-
                     if (resourceIterator->use_count() == 1)
                     {
-                        resourceIterator = m_resources->m_resources.erase(resourceIterator);
-                        resourceRemoved = true;
-                    }
-
-                    if (!resourceRemoved)
-                    {
-                        resourceIterator++;
+                        (*resourceIterator)->Kill();
                     }
                 }
+
+                CheckForDeadResources();
 
                 start = std::chrono::system_clock::now();
             }

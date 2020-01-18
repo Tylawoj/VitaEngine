@@ -1,6 +1,6 @@
 #include "Entity.h"
 #include "Component.h"
-#include "Exception.h"
+#include "Core.h"
 
 #include <iostream>
 
@@ -11,90 +11,106 @@ namespace vita
         return m_core.lock();
     }
 
+    void Entity::CheckForDeadComponents()
+    {
+        for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end();)
+        {
+            if (!(*componentIterator)->IsAlive())
+            {
+                componentIterator = m_components.erase(componentIterator);
+            }
+
+            else
+            {
+                componentIterator++;
+            }
+        }
+    }
+
     void Entity::Init()
     {
-        std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin();
-
-        while (componentIterator != m_components.end())
+        for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
         {
-            bool exceptionCaught = false;
-
             try
             {
                 (*componentIterator)->OnInit();
             }
 
+            catch (std::exception& e)
+            {
+                std::cout << "System Exception: " << e.what() << std::endl;
+                std::cout << "The component will be removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }
+
             catch (Exception& e)
             {
-                std::cout << "Exception: " << e.What() << std::endl;
-                std::cout << "The component has been removed." << std::endl;
+                std::cout << "Engine Exception: " << e.What() << std::endl;
+                std::cout << "The component will been removed." << std::endl;
 
-                componentIterator = m_components.erase(componentIterator);
-                exceptionCaught = true;
-            }
-
-            if (!exceptionCaught)
-            {
-                componentIterator++;
+                (*componentIterator)->Kill();
             }
         }
+
+        CheckForDeadComponents();
     }
 
     void Entity::Tick()
     {
-        std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin();
-
-        while (componentIterator != m_components.end())
+        for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
         {
-            bool exceptionCaught = false;
-
             try
             {
                 (*componentIterator)->OnTick();
             }
 
+            catch (std::exception& e)
+            {
+                std::cout << "System Exception: " << e.what() << std::endl;
+                std::cout << "The component will be removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }
+
             catch (Exception& e)
             {
-                std::cout << "Exception: " << e.What() << std::endl;
-                std::cout << "The component has been removed." << std::endl;
+                std::cout << "Engine Exception: " << e.What() << std::endl;
+                std::cout << "The component will been removed." << std::endl;
 
-                componentIterator = m_components.erase(componentIterator);
-                exceptionCaught = true;
-            }
-
-            if (!exceptionCaught)
-            {
-                componentIterator++;
+                (*componentIterator)->Kill();
             }
         }
+
+        CheckForDeadComponents();
     }
 
     void Entity::Display()
     {
-        std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin();
-
-        while (componentIterator != m_components.end())
+        for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
         {
-            bool exceptionCaught = false;
-
             try
             {
                 (*componentIterator)->OnDisplay();
             }
 
+            catch (std::exception& e)
+            {
+                std::cout << "System Exception: " << e.what() << std::endl;
+                std::cout << "The component will be removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }
+
             catch (Exception& e)
             {
-                std::cout << "Exception: " << e.What() << std::endl;
-                std::cout << "The component has been removed." << std::endl;
+                std::cout << "Engine Exception: " << e.What() << std::endl;
+                std::cout << "The component will been removed." << std::endl;
 
-                componentIterator = m_components.erase(componentIterator);
-                exceptionCaught = true;
-            }
-
-            if (!exceptionCaught)
-            {
-                componentIterator++;
+                (*componentIterator)->Kill();
             }
         }
+
+        CheckForDeadComponents();
     }
 }
