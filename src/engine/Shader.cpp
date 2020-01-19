@@ -17,7 +17,7 @@ namespace vita
 
         if (!shaderFile.is_open())
         {
-            throw Exception("std::ifstream failed to open a shader file.");
+            throw Exception("Shader: std::ifstream failed to open a shader file.");
         }
 
         std::string shaderSource;

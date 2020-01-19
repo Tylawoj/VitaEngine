@@ -45,6 +45,7 @@ namespace vita
         {
             std::string exceptionMsg = "SDL failed to create a window: ";
             exceptionMsg += SDL_GetError();
+            exceptionMsg += "\nPossible solution: If using MSAA, make sure that the currently used GPU supports multisampling.";
 
             throw Exception(exceptionMsg);
         }

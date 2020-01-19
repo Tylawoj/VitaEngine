@@ -21,12 +21,12 @@ namespace vita
     {
         if (m_mesh != NULL && m_material != NULL)
         {
-            bool transformCheck = GetEntity()->HasComponent<Transform>();
+            bool transformExists = GetEntity()->HasComponent<Transform>();
 
-            if (transformCheck)
+            if (transformExists)
             {
                 std::sr1::shared_ptr<Transform> transform = GetEntity()->GetComponent<Transform>();
-                std::sr1::shared_ptr<Camera> camera = GetCore()->GetCurrentCamera();
+                std::sr1::shared_ptr<Camera> camera = GetCore()->GetCamera();
                 std::sr1::shared_ptr<rend::Shader> rendShader = m_material->GetRendShader();
 
                 rendShader->setUniform("in_Model", transform->GetTransform());
@@ -43,16 +43,21 @@ namespace vita
 
                 rendShader->render();
             }
+
+            else
+            {
+                throw Exception("MeshRenderer: Could not find a Transform in an Entity.");
+            }
         }
 
         else if (m_mesh == NULL)
         {
-            throw Exception("Mesh was not loaded correctly.");
+            throw Exception("MeshRenderer: Mesh was not loaded correctly.");
         }
 
         else if (m_material == NULL)
         {
-            throw Exception("Material was not loaded correctly.");
+            throw Exception("MeshRenderer: Material was not loaded correctly.");
         }
     }
 

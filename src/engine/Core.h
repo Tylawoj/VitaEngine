@@ -15,7 +15,6 @@ namespace vita
     class Entity;
     class Environment;
     class Keyboard;
-    class MeshRenderer;
     class Screen;
 
     class Core : public std::enable_shared_from_this<Core>, public std::sr1::noncopyable
@@ -24,12 +23,11 @@ namespace vita
 
         private:
             std::sr1::weak_ptr<Core> m_self;
-            std::sr1::shared_ptr<Camera> m_currentCamera;
+            std::sr1::shared_ptr<Camera> m_camera;
             std::sr1::shared_ptr<rend::Context> m_context;
             std::sr1::shared_ptr<Environment> m_environment;
             std::list<std::sr1::shared_ptr<Entity>> m_entities;
             std::sr1::shared_ptr<Keyboard> m_keyboard;
-            std::sr1::shared_ptr<MeshRenderer> m_meshRenderer;
             std::sr1::shared_ptr<Resources> m_resources;
             std::sr1::shared_ptr<Screen> m_screen;
             bool m_isRunning;
@@ -41,7 +39,7 @@ namespace vita
             }
 
             std::sr1::shared_ptr<Entity> AddEntity();
-            std::sr1::shared_ptr<Camera> GetCurrentCamera();
+            std::sr1::shared_ptr<Camera> GetCamera();
             std::sr1::shared_ptr<rend::Context> GetContext();
             std::sr1::shared_ptr<Resources> GetResources();
             static std::sr1::shared_ptr<Core> Init(std::string _title, int _width, int _height, int _samples);

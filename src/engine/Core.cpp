@@ -17,9 +17,9 @@ namespace vita
         return entity;
     }
 
-    std::sr1::shared_ptr<Camera> Core::GetCurrentCamera()
+    std::sr1::shared_ptr<Camera> Core::GetCamera()
     {
-        return m_currentCamera;
+        return m_camera;
     }
 
     std::sr1::shared_ptr<Core> Core::Init(std::string _title, int _width, int _height, int _samples)
@@ -86,7 +86,6 @@ namespace vita
     {
         return m_context;
     }
-
 
     std::sr1::shared_ptr<Resources> Core::GetResources()
     {

@@ -23,9 +23,9 @@ std::sr1::shared_ptr<Resources> Component::GetResources()
     return m_entity.lock()->GetCore()->GetResources();
 }
 
-std::sr1::shared_ptr<Camera> Component::GetCurrentCamera()
+std::sr1::shared_ptr<Camera> Component::GetCamera()
 {
-    return m_entity.lock()->GetCore()->GetCurrentCamera();
+    return m_entity.lock()->GetCore()->GetCamera();
 }
 
 bool Component::IsAlive()

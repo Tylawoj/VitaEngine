@@ -97,7 +97,7 @@ namespace vita
             catch (Exception& e)
             {
                 std::cout << "Engine Exception: " << e.What() << std::endl;
-                std::cout << "The component will been removed." << std::endl;
+                std::cout << "The component will be removed." << std::endl;
 
                 (*componentIterator)->Kill();
             }

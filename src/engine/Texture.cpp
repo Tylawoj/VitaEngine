@@ -23,7 +23,7 @@ namespace vita
 
         if (!data)
         {
-            throw Exception("STB_Image failed to open a specified texture.");
+            throw Exception("Texture: STB_Image failed to open a specified texture.");
         }
 
         m_texture->setSize(width, height);

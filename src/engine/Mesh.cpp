@@ -17,7 +17,7 @@ namespace vita
 
         if (!meshFile.is_open())
         {
-            throw Exception("std::ifstream failed to open a shader file.");
+            throw Exception("Mesh: std::ifstream failed to open a mesh file.");
         }
 
         std::string meshSource;
