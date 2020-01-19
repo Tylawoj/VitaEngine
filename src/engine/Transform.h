@@ -16,6 +16,7 @@ namespace vita
             void Translate(glm::vec3 _translation);
             void Rotate(glm::vec3 _rotation);
             void SetAsChildrenOf(std::sr1::shared_ptr<Entity> _parent);
+            void RemoveChildStatus();
             glm::vec3 GetGlobalPosition();
             glm::vec3 GetGlobalRotation();
             glm::vec3 GetLocalPosition();

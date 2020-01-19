@@ -10,6 +10,7 @@ int main()
     int screenWidth = 1280;
     int screenHeight = 960;
     int samples = 16;
+    float fov = 60.0f;
 
     std::sr1::shared_ptr<Core> core = Core::Init(gameTitle, screenWidth, screenHeight, samples);
 
