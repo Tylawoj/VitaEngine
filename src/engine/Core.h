@@ -40,6 +40,7 @@ namespace vita
 
             std::sr1::shared_ptr<Entity> AddEntity();
             std::sr1::shared_ptr<Camera> GetCamera();
+            std::sr1::shared_ptr<Screen> GetScreen();
             std::sr1::shared_ptr<rend::Context> GetContext();
             std::sr1::shared_ptr<Resources> GetResources();
             static std::sr1::shared_ptr<Core> Init(std::string _title, int _width, int _height, int _samples);

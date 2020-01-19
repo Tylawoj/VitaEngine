@@ -86,8 +86,8 @@ namespace vita
 
             glm::vec3 axisAngledRotation;
 
-            float angle = std::acos(rotation.w) * 2;
-            float axisAngle = std::sin(angle / 2.0f);
+            float angle = glm::acos(rotation.w) * 2;
+            float axisAngle = glm::sin(angle / 2.0f);
 
             if (axisAngle >= 0.0f && axisAngle < std::numeric_limits<float>::epsilon())
             {
@@ -123,7 +123,7 @@ namespace vita
         return m_rotation;
     }
 
-    glm::mat4 Transform::GetTransform()
+    glm::mat4 Transform::GetTransformMatrix()
     {
         glm::mat4 model(1.0f);
 
@@ -150,6 +150,12 @@ namespace vita
         model = glm::rotate(model, m_rotation.z, glm::vec3(0, 0, 1));
         model = glm::translate(model, m_position);
         return model;
+    }
+
+    void Transform::RemoveChildStatus()
+    {
+        m_parent = NULL;
+        m_setAsChild = false;
     }
 
     void Transform::SetAsChildrenOf(std::sr1::shared_ptr<Entity> _parent)

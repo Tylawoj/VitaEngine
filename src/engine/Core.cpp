@@ -87,6 +87,11 @@ namespace vita
         return m_context;
     }
 
+    std::sr1::shared_ptr<Screen> Core::GetScreen()
+    {
+        return m_screen;
+    }
+
     std::sr1::shared_ptr<Resources> Core::GetResources()
     {
         return m_resources;

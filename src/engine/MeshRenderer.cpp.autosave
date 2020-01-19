@@ -32,6 +32,7 @@ namespace vita
                 rendShader->setUniform("in_Model", transform->GetTransformMatrix());
                 rendShader->setUniform("in_Projection", camera->GetProjectionMatrix());
                 rendShader->setUniform("in_View", camera->GetViewMatrix());
+                
                 //if (GetCore()->IsLightingSet())
                 //{
 
