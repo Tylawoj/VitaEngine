@@ -1,3 +1,6 @@
+#ifndef _VITA_RESOURCES_H_
+#define _VITA_RESOURCES_H_
+
 #include "Exception.h"
 #include "Resource.h"
 #include <sr1/memory>
@@ -19,30 +22,36 @@ namespace vita
             std::list<std::sr1::shared_ptr<Resource>> m_resources;
             void ChangeSeparator(std::string& _path);
         public:
-            template <typename T> std::sr1::shared_ptr<T> Load(std::string& _path)
+            template <typename T> std::sr1::shared_ptr<T> Load(std::string _path)
             {
+                std::sr1::shared_ptr<T> resource;
+
                 try
                 {
-                    std::sr1::shared_ptr<T> resource = std::make_shared<T>();
+                    resource = std::make_shared<T>();
                     ChangeSeparator(_path);
                     resource->OnLoad(_path);
                     resource->m_core = m_core;
                     m_resources.push_back(resource);
-
-                    return resource;
                 }
 
                 catch (Exception& e)
                 {
                     std::cout << "Engine Exception: " << e.What() << std::endl;
                     std::cout << "Could not load a resource with the specified path: " << _path << std::endl;
+                    resource = NULL;
                 }
 
                 catch (std::exception& e)
                 {
                     std::cout << "System Exception: " << e.what() << std::endl;
                     std::cout << "Could not load a resource with the specified path: " << _path << std::endl;
+                    resource = NULL;
                 }
+
+                return resource;
             }
     };
 }
+
+#endif

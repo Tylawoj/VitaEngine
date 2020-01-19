@@ -6,8 +6,8 @@ namespace vita
     class Camera : public Component
     {
         public:
-            glm::mat4 GetProjection();
-            glm::mat4 GetView();
+            glm::mat4 GetProjectionMatrix();
+            glm::mat4 GetViewMatrix();
     };
 }
 

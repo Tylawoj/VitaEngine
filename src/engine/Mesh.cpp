@@ -4,6 +4,11 @@
 
 namespace vita
 {
+    std::sr1::shared_ptr<rend::Mesh> Mesh::GetRendMesh()
+    {
+        return m_mesh;
+    }
+
     void Mesh::OnLoad(const std::string &_path)
     {
         m_mesh = GetContext()->createMesh();

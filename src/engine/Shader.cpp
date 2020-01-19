@@ -4,6 +4,11 @@
 
 namespace vita
 {
+    std::sr1::shared_ptr<rend::Shader> Shader::GetRendShader()
+    {
+        return m_shader;
+    }
+
     void Shader::OnLoad(const std::string& _path)
     {
         m_shader = GetContext()->createShader();

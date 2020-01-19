@@ -36,18 +36,30 @@ namespace vita
             {
                 for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
                 {
-                    std::sr1::shared_ptr<T> rtn = std::dynamic_pointer_cast<T>(*componentIterator);
+                    std::sr1::shared_ptr<T> component = std::dynamic_pointer_cast<T>(*componentIterator);
 
-                    if (rtn != NULL)
+                    if (component != NULL)
                     {
-                        return rtn;
-                    }
-
-                    else
-                    {
-                        return nullptr;
+                        return component;
                     }
                 }
+
+                throw Exception("GetComponent() could not find a Component of specified type in an Entity. Use HasComponent() first if you are unsure if an Entity contains this Component.");
+            }
+
+            template<typename T> bool HasComponent()
+            {
+                for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
+                {
+                    std::sr1::shared_ptr<T> component = std::dynamic_pointer_cast<T>(*componentIterator);
+
+                    if (component != NULL)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
 
 //        template <typename T, typename A> std::shared_ptr<T> addComponent(A a);

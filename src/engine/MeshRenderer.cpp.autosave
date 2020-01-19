@@ -1,9 +1,0 @@
-#include "MeshRenderer.h"
-
-namespace vita
-{
-    void MeshRenderer::OnDisplay()
-    {
-        m_material->GetShader()->setUniform()
-    }
-}

@@ -2,7 +2,6 @@
 #include "Exception.h"
 #include "Entity.h"
 #include "Resource.h"
-#include "Resources.h"
 #include "Screen.h"
 #include <SDL2/SDL.h>
 #include <chrono>

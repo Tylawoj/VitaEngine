@@ -42,6 +42,9 @@ namespace vita
 
             throw Exception(exceptionMsg);
         }
+
+        m_width = _width;
+        m_height = _height;
     }
 
     Screen::~Screen()

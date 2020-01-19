@@ -6,6 +6,11 @@
 
 namespace vita
 {
+    std::sr1::shared_ptr<rend::Texture> Texture::GetRendTexture()
+    {
+        return m_texture;
+    }
+
     void Texture::OnLoad(const std::string& _path)
     {
         m_texture = GetContext()->createTexture();
@@ -18,7 +23,7 @@ namespace vita
 
         if (!data)
         {
-            throw Exception("STB_Image failed to open the specified texture.");
+            throw Exception("STB_Image failed to open a specified texture.");
         }
 
         m_texture->setSize(width, height);

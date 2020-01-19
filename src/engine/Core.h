@@ -7,13 +7,15 @@
 #include <sr1/memory>
 #include <list>
 
+#include "Resources.h"
+
 namespace vita
 {
     class Camera;
     class Entity;
     class Environment;
     class Keyboard;
-    class Resources;
+    class MeshRenderer;
     class Screen;
 
     class Core : public std::enable_shared_from_this<Core>, public std::sr1::noncopyable
@@ -27,11 +29,17 @@ namespace vita
             std::sr1::shared_ptr<Environment> m_environment;
             std::list<std::sr1::shared_ptr<Entity>> m_entities;
             std::sr1::shared_ptr<Keyboard> m_keyboard;
+            std::sr1::shared_ptr<MeshRenderer> m_meshRenderer;
             std::sr1::shared_ptr<Resources> m_resources;
             std::sr1::shared_ptr<Screen> m_screen;
             bool m_isRunning;
             void CheckForDeadResources();
         public:
+            template <typename T> std::sr1::shared_ptr<T> AddResource(std::string _path)
+            {
+                return m_resources->Load<T>(_path);
+            }
+
             std::sr1::shared_ptr<Entity> AddEntity();
             std::sr1::shared_ptr<Camera> GetCurrentCamera();
             std::sr1::shared_ptr<rend::Context> GetContext();

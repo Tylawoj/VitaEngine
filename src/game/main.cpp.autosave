@@ -15,7 +15,7 @@ int main()
 
     // Create a single in-game object
     std::sr1::shared_ptr<Entity> entity = core->AddEntity();
-
+    
   // std::sr1::shared_ptr<Shader> shader = core->AddResource<Shader>("xd");
 
   //  std::sr1::shared_ptr<Mesh> mesh = core->AddResource<Mesh>("model.obj");

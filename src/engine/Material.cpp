@@ -18,6 +18,26 @@ namespace vita
         m_texture = GetResources()->Load<Texture>(_texturePath);
     }
 
+    std::sr1::shared_ptr<rend::Shader> Material::GetRendShader()
+    {
+        return m_shader->GetRendShader();
+    }
+
+    std::sr1::shared_ptr<rend::Texture> Material::GetRendTexture()
+    {
+        return m_texture->GetRendTexture();
+    }
+
+    std::sr1::shared_ptr<Shader> Material::GetShader()
+    {
+        return m_shader;
+    }
+
+    std::sr1::shared_ptr<Texture> Material::GetTexture()
+    {
+        return m_texture;
+    }
+
     void Material::SetShader(std::sr1::shared_ptr<Shader> _shader)
     {
         m_shader = _shader;

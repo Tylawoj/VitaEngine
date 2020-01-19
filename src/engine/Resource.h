@@ -1,13 +1,9 @@
 #ifndef _VITA_RESOURCE_H_
 #define _VITA_RESOURCE_H_
 
+#include <rend/rend.h>
 #include <sr1/memory>
 #include <string>
-
-namespace rend
-{
-    class Context;
-}
 
 namespace vita
 {
