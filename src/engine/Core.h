@@ -23,8 +23,8 @@ namespace vita
         friend class vita::Entity;
 
         private:
-            std::sr1::weak_ptr<Camera> m_currentCamera;
             std::sr1::weak_ptr<Core> m_self;
+            std::sr1::shared_ptr<Camera> m_currentCamera;
             std::sr1::shared_ptr<rend::Context> m_context;
             std::sr1::shared_ptr<Environment> m_environment;
             std::list<std::sr1::shared_ptr<Entity>> m_entities;

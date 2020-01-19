@@ -17,21 +17,37 @@ namespace vita
         return entity;
     }
 
+    std::sr1::shared_ptr<Camera> Core::GetCurrentCamera()
+    {
+        return m_currentCamera;
+    }
+
     std::sr1::shared_ptr<Core> Core::Init(std::string _title, int _width, int _height, int _samples)
     {
         std::sr1::shared_ptr<Core> core = std::make_shared<Core>();
         core->m_self = core;
 
-        if (SDL_Init(SDL_INIT_VIDEO) < 0)
+        try
         {
-            std::string exceptionMsg = "Engine Exception: Could not initialize SDL: ";
-            exceptionMsg += SDL_GetError();
-
-            throw Exception(exceptionMsg);
+            core->m_screen = std::make_shared<Screen>(_title, _width, _height, _samples);
+            core->m_context = rend::Context::initialize();
         }
 
-        core->m_screen = std::make_shared<Screen>(_title, _width, _height, _samples);
-        core->m_context = rend::Context::initialize();
+        catch (Exception& e)
+        {
+            std::cout << "Critical Engine Exception: " << e.What() << std::endl;
+            std::cout << "The engine will quit." << std::endl;
+
+            return NULL;
+        }
+
+        catch (std::exception& e)
+        {
+            std::cout << "Critical System Exception: " << e.what() << std::endl;
+            std::cout << "The engine will quit." << std::endl;
+
+            return NULL;
+        }
 
         core->m_resources = std::make_shared<Resources>();
         core->m_resources->m_core = core;

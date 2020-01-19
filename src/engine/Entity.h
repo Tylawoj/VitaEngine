@@ -44,7 +44,7 @@ namespace vita
                     }
                 }
 
-                throw Exception("GetComponent() could not find a Component of specified type in an Entity. Use HasComponent() first if you are unsure if an Entity contains this Component.");
+                throw Exception("GetComponent() could not find a Component of specified type in an Entity. Hint: Use HasComponent() first if you are unsure if an Entity contains this Component.");
             }
 
             template<typename T> bool HasComponent()

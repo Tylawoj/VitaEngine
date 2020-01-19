@@ -6,6 +6,14 @@ namespace vita
 {
     Screen::Screen(std::string _title, int _width, int _height, int _samples)
     {
+        if (SDL_Init(SDL_INIT_VIDEO) < 0)
+        {
+            std::string exceptionMsg = "Could not initialize SDL: ";
+            exceptionMsg += SDL_GetError();
+
+            throw Exception(exceptionMsg);
+        }
+
         if (_samples < 1)
         {
             std::cout << "Engine Warning: Amount of samples set by user to a value below 1. " << std::endl;
@@ -14,7 +22,15 @@ namespace vita
             _samples = 1;
         }
 
-        else if (_samples > 1)
+        else if (_samples > 8)
+        {
+            std::cout << "Engine Warning: Amount of samples set by user to a value above the max value of 8. " << std::endl;
+            std::cout << "Automatically changed the amount of samples to 8." << std::endl;
+
+            _samples = 8;
+        }
+
+        if (_samples > 1)
         {
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _samples);
@@ -27,7 +43,7 @@ namespace vita
 
         if (!m_window)
         {
-            std::string exceptionMsg = "Engine Exception: SDL failed to create a window: ";
+            std::string exceptionMsg = "SDL failed to create a window: ";
             exceptionMsg += SDL_GetError();
 
             throw Exception(exceptionMsg);
@@ -37,7 +53,7 @@ namespace vita
 
         if (!m_glContext)
         {
-            std::string exceptionMsg = "Engine Exception: SDL failed to create an OpenGL context: ";
+            std::string exceptionMsg = "SDL failed to create an OpenGL context: ";
             exceptionMsg += SDL_GetError();
 
             throw Exception(exceptionMsg);
