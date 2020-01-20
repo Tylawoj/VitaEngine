@@ -15,7 +15,7 @@ namespace vita
     void Camera::OnInit()
     {
         m_projectionMatrix = glm::perspective(glm::radians(m_fov),
-            (float)GetCore()->GetScreen()->GetWidth() / (float)GetCore()->GetScreen()->GetWidth(),
+            (float)GetCore()->GetScreen()->GetWidth() / (float)GetCore()->GetScreen()->GetHeight(),
             0.1f, 100.f);
     }
 
