@@ -1,6 +1,7 @@
 #ifndef _VITA_H_
 #define _VITA_H_
 
+#include "engine/Camera.h"
 #include "engine/Component.h"
 #include "engine/Core.h"
 #include "engine/Entity.h"

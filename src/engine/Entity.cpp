@@ -6,7 +6,7 @@
 
 namespace vita
 {
-    std::shared_ptr<Core> Entity::GetCore()
+    std::sr1::shared_ptr<Core> Entity::GetCore()
     {
         return m_core.lock();
     }

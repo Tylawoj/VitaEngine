@@ -17,13 +17,13 @@ int main()
     if (core != NULL)
     {
         // Create a single in-game object
-        std::sr1::shared_ptr<Entity> entity = core->AddEntity();
+        std::sr1::shared_ptr<Entity> cameraEntity = core->AddEntity();
+        std::sr1::shared_ptr<Camera> cameraComponent = cameraEntity->AddComponent<Camera>(fov, glm::vec3(0.0f, 0.0f, -1.0f));
+        std::sr1::shared_ptr<Transform> cameraTransform = cameraEntity->AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 
-      // std::sr1::shared_ptr<Shader> shader = core->AddResource<Shader>("xd");
-
-      //  std::sr1::shared_ptr<Mesh> mesh = core->AddResource<Mesh>("model.obj");
-
-      //  std::sr1::shared_ptr<Material> component = entity->AddComponent<Material>("test.txt","test.png");
+  //      std::sr1::shared_ptr<Shader> shader = core->AddResource<Shader>("xd");
+ //       std::sr1::shared_ptr<Mesh> mesh = core->AddResource<Mesh>("model.obj");
+  //      std::sr1::shared_ptr<Material> component = entity->AddComponent<Material>(mesh, shader);
 
         // Add a very simple component to it
         // none yet

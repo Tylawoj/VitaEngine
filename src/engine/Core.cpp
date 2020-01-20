@@ -1,8 +1,10 @@
 #include "Core.h"
+#include "Environment.h"
 #include "Exception.h"
 #include "Entity.h"
 #include "Resource.h"
 #include "Screen.h"
+#include "Transform.h"
 #include <SDL2/SDL.h>
 #include <chrono>
 
@@ -11,8 +13,10 @@ namespace vita
     std::sr1::shared_ptr<Entity> Core::AddEntity()
     {
         std::sr1::shared_ptr<Entity> entity = std::make_shared<Entity>();
-        m_entities.push_back(entity);
+        entity->m_self = entity;
         entity->m_core = m_self;
+
+        m_entities.push_back(entity);
 
         return entity;
     }
@@ -51,6 +55,8 @@ namespace vita
 
         core->m_resources = std::make_shared<Resources>();
         core->m_resources->m_core = core;
+
+        core->m_environment = std::make_shared<Environment>();
 
         return core;
     }
@@ -108,6 +114,8 @@ namespace vita
         {
             (*entityIterator)->Init();
         }
+
+        m_environment->Init();
 
         while (m_isRunning)
         {

@@ -1,7 +1,6 @@
 #include "Component.h"
 #include "Exception.h"
 #include <sr1/memory>
-#include <memory>
 #include <list>
 
 namespace vita
@@ -27,6 +26,7 @@ namespace vita
             {
                 std::sr1::shared_ptr<T> component = std::make_shared<T>(arguments...);
                 component->m_entity = m_self;
+
                 m_components.push_back(component);
 
                 return component;

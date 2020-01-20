@@ -32,10 +32,9 @@ namespace vita
             std::sr1::shared_ptr<Entity> GetEntity();
             std::sr1::shared_ptr<Camera> GetCamera();
             std::sr1::shared_ptr<Core> GetCore();
-            std::sr1::shared_ptr<Keyboard> GetKeyboard();
-            std::sr1::shared_ptr<Environment> GetEnvironment();
+            std::sr1::shared_ptr<Keyboard> GetKeyboard() {}
+            std::sr1::shared_ptr<Environment> GetEnvironment() {}
             std::sr1::shared_ptr<Resources> GetResources();
-            std::sr1::shared_ptr<Transform> GetTransform();
     };
 }
 

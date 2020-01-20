@@ -36,7 +36,7 @@ namespace vita
             if (m_parent->HasComponent<Transform>())
             {
                 std::sr1::shared_ptr<Transform> parentTransform = m_parent->GetComponent<Transform>();
-                model = model * parentTransform->GetTransform();
+                model = model * parentTransform->GetTransformMatrix();
             }
 
             else
@@ -61,7 +61,7 @@ namespace vita
             if (m_parent->HasComponent<Transform>())
             {
                 std::sr1::shared_ptr<Transform> parentTransform = m_parent->GetComponent<Transform>();
-                model = model * parentTransform->GetTransform();
+                model = model * parentTransform->GetTransformMatrix();
             }
 
             else
@@ -132,7 +132,7 @@ namespace vita
             if (m_parent->HasComponent<Transform>())
             {
                 std::sr1::shared_ptr<Transform> parentTransform = m_parent->GetComponent<Transform>();
-                model = model * parentTransform->GetTransform();
+				model = model * parentTransform->GetTransformMatrix();
             }
 
             else

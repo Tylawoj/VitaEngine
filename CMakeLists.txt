@@ -17,14 +17,22 @@ file(GLOB ENGINEFILES
         src/engine/*.cpp
         src/engine/*.h)
 
-add_library(VitaEngine SHARED ${ENGINEFILES})
+if(MSVC)
+  add_library(VitaEngine STATIC ${ENGINEFILES})
+else()
+  add_library(VitaEngine SHARED ${ENGINEFILES})
+endif()
 
 file (GLOB RENDFILES
     shared/include/rend/*.cpp
     shared/include/rend/*.h)
-    
-add_library(rend SHARED ${RENDFILES})
-    
+
+if(MSVC)
+  add_library(rend STATIC ${RENDFILES})
+else()
+  add_library(rend SHARED ${RENDFILES})
+endif()  
+  
 if(MSVC)
   target_link_libraries(rend SDL2 glew32 OpenGL32 OpenAL32)
 else()
