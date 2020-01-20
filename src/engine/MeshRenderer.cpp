@@ -8,6 +8,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "Transform.h"
+#include <rend/rend.h>
 
 namespace vita
 {
@@ -15,6 +16,11 @@ namespace vita
     {
         m_mesh = _mesh;
         m_material = _material;
+    }
+
+    void MeshRenderer::OnInit()
+    {
+        m_buffer = GetCore()->GetContext()->createBuffer();
     }
 
     void MeshRenderer::OnDisplay()
@@ -26,12 +32,12 @@ namespace vita
             if (transformExists)
             {
                 std::sr1::shared_ptr<Transform> transform = GetEntity()->GetComponent<Transform>();
-                std::sr1::shared_ptr<Camera> camera = GetCore()->GetCamera();
+                std::sr1::shared_ptr<Camera> camera = GetCore()->GetCurrentCamera();
                 std::sr1::shared_ptr<rend::Shader> rendShader = m_material->GetRendShader();
 
-                rendShader->setUniform("in_Model", transform->GetTransformMatrix());
-                rendShader->setUniform("in_Projection", camera->GetProjectionMatrix());
-                rendShader->setUniform("in_View", camera->GetViewMatrix());
+                rendShader->setUniform("u_Model", transform->GetTransformMatrix());
+                rendShader->setUniform("u_View", camera->GetViewMatrix());
+                rendShader->setUniform("u_Projection", camera->GetProjectionMatrix());
 
                 //if (GetCore()->IsLightingSet())
                 //{
@@ -39,9 +45,8 @@ namespace vita
                 //}
 
                 std::sr1::shared_ptr<rend::Mesh> rendMesh = m_mesh->GetRendMesh();
-
-                rendMesh->setTexture("in_Texture", m_material->GetRendTexture());
-
+                rendMesh->setTexture("u_Texture", m_material->GetRendTexture());
+                rendShader->setMesh(rendMesh);
                 rendShader->render();
             }
 

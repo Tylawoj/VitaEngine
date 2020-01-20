@@ -48,7 +48,7 @@ namespace vita
 		right = glm::normalize(right);
 
 		glm::vec3 up = glm::cross(m_target, right);
-		glm::normalize(up);
+        up = glm::normalize(-up);
 
         return glm::inverse(glm::lookAt(position, position + m_target, up));
     }

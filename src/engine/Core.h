@@ -39,7 +39,8 @@ namespace vita
             }
 
             std::sr1::shared_ptr<Entity> AddEntity();
-            std::sr1::shared_ptr<Camera> GetCamera();
+            std::sr1::shared_ptr<Camera> GetCurrentCamera();
+            void SetCurrentCamera(std::sr1::shared_ptr<Camera> _camera);
             std::sr1::shared_ptr<Screen> GetScreen();
             std::sr1::shared_ptr<rend::Context> GetContext();
             std::sr1::shared_ptr<Resources> GetResources();

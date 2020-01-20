@@ -30,7 +30,7 @@ namespace vita
             void Kill();
 
             std::sr1::shared_ptr<Entity> GetEntity();
-            std::sr1::shared_ptr<Camera> GetCamera();
+            std::sr1::shared_ptr<Camera> GetCurrentCamera();
             std::sr1::shared_ptr<Core> GetCore();
             std::sr1::shared_ptr<Keyboard> GetKeyboard() {}
             std::sr1::shared_ptr<Environment> GetEnvironment() {}

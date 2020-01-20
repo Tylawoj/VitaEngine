@@ -2,7 +2,7 @@
 
 namespace vita
 {
-    void Resources::ChangeSeparator(std::string& _path)
+    std::string Resources::ChangeSeparator(std::string _path)
     {
         /// Set the separator depending on detected OS.
         #ifdef _WIN32
@@ -19,5 +19,7 @@ namespace vita
         {
             _path.replace(startPosition, wrongSeparator.length(), correctSeparator);
         }
+
+        return _path;
     }
 }

@@ -26,6 +26,7 @@ namespace vita
             {
                 std::sr1::shared_ptr<T> component = std::make_shared<T>(arguments...);
                 component->m_entity = m_self;
+                component->m_alive = true;
 
                 m_components.push_back(component);
 

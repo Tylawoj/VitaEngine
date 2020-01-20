@@ -21,9 +21,14 @@ namespace vita
         return entity;
     }
 
-    std::sr1::shared_ptr<Camera> Core::GetCamera()
+    std::sr1::shared_ptr<Camera> Core::GetCurrentCamera()
     {
         return m_camera;
+    }
+
+    void Core::SetCurrentCamera(std::sr1::shared_ptr<Camera> _camera)
+    {
+        m_camera = _camera;
     }
 
     std::sr1::shared_ptr<Core> Core::Init(std::string _title, int _width, int _height, int _samples)

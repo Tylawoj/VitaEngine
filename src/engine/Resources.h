@@ -20,7 +20,7 @@ namespace vita
         private:
             std::sr1::weak_ptr<Core> m_core;
             std::list<std::sr1::shared_ptr<Resource>> m_resources;
-            void ChangeSeparator(std::string& _path);
+            std::string ChangeSeparator(std::string _path);
         public:
             template <typename T> std::sr1::shared_ptr<T> Load(std::string _path)
             {
@@ -29,9 +29,10 @@ namespace vita
                 try
                 {
                     resource = std::make_shared<T>();
-                    ChangeSeparator(_path);
-                    resource->OnLoad(_path);
+                    std::string newPath = ChangeSeparator(_path);
                     resource->m_core = m_core;
+                    resource->m_alive = true;
+                    resource->OnLoad(newPath);
                     m_resources.push_back(resource);
                 }
 
