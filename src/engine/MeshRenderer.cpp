@@ -27,32 +27,46 @@ namespace vita
     {
         if (m_mesh != NULL && m_material != NULL)
         {
-            bool transformExists = GetEntity()->HasComponent<Transform>();
-
-            if (transformExists)
+            if (m_material->GetShader() != NULL && m_material->GetTexture())
             {
-                std::sr1::shared_ptr<Transform> transform = GetEntity()->GetComponent<Transform>();
-                std::sr1::shared_ptr<Camera> camera = GetCore()->GetCurrentCamera();
-                std::sr1::shared_ptr<rend::Shader> rendShader = m_material->GetRendShader();
+                bool transformExists = GetEntity()->HasComponent<Transform>();
 
-                rendShader->setUniform("u_Model", transform->GetTransformMatrix());
-                rendShader->setUniform("u_View", camera->GetViewMatrix());
-                rendShader->setUniform("u_Projection", camera->GetProjectionMatrix());
+                if (transformExists)
+                {
+                    std::sr1::shared_ptr<Transform> transform = GetEntity()->GetComponent<Transform>();
+                    std::sr1::shared_ptr<Camera> camera = GetCore()->GetCurrentCamera();
 
-                //if (GetCore()->IsLightingSet())
-                //{
+                    if (camera == NULL)
+                    {
+                        throw Exception("MeshRenderer: Core does not have a current camera set.");
+                    }
 
-                //}
+                    std::sr1::shared_ptr<rend::Shader> rendShader = m_material->GetRendShader();
 
-                std::sr1::shared_ptr<rend::Mesh> rendMesh = m_mesh->GetRendMesh();
-                rendMesh->setTexture("u_Texture", m_material->GetRendTexture());
-                rendShader->setMesh(rendMesh);
-                rendShader->render();
+                    rendShader->setUniform("u_Model", transform->GetTransformMatrix());
+                    rendShader->setUniform("u_View", camera->GetViewMatrix());
+                    rendShader->setUniform("u_Projection", camera->GetProjectionMatrix());
+
+                    //if (GetCore()->IsLightingSet())
+                    //{
+
+                    //}
+
+                    std::sr1::shared_ptr<rend::Mesh> rendMesh = m_mesh->GetRendMesh();
+                    rendMesh->setTexture("u_Texture", m_material->GetRendTexture());
+                    rendShader->setMesh(rendMesh);
+                    rendShader->render();
+                }
+
+                else
+                {
+                    throw Exception("MeshRenderer: Could not find a Transform in an Entity.");
+                }
             }
 
             else
             {
-                throw Exception("MeshRenderer: Could not find a Transform in an Entity.");
+                throw Exception("MeshRenderer: Material's Shader or Texture was not loaded correctly.");
             }
         }
 

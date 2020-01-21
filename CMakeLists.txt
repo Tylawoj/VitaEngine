@@ -32,7 +32,7 @@ if(MSVC)
 else()
   add_library(rend SHARED ${RENDFILES})
 endif()  
-  
+
 if(MSVC)
   target_link_libraries(rend SDL2 glew32 OpenGL32 OpenAL32)
 else()

@@ -13,7 +13,6 @@ namespace vita
             Camera(float _fov, glm::vec3 _target);
             /**
              * @brief Sets a direction for the camera to look at.
-             * Warning: The direction will still be affected by rotations.
              * @param _target The direction vector.
              */
             void SetTargetDirection(glm::vec3 _target);

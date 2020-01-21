@@ -20,19 +20,18 @@ int main()
         std::sr1::shared_ptr<Entity> cameraEntity = core->AddEntity();
         std::sr1::shared_ptr<Camera> cameraComponent = cameraEntity->AddComponent<Camera>(fov, glm::vec3(0.0f, 0.0f, -1.0f));
         core->SetCurrentCamera(cameraComponent);
-        std::sr1::shared_ptr<Transform> cameraTransform = cameraEntity->AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+        std::sr1::shared_ptr<Transform> cameraTransform = cameraEntity->AddComponent<Transform>(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
         std::sr1::shared_ptr<Shader> shader = core->AddResource<Shader>("../shared/shaders/Tex.txt");
         std::sr1::shared_ptr<Mesh> mesh = core->AddResource<Mesh>("../shared/models/curuthers.obj");
         std::sr1::shared_ptr<Texture> texture = core->AddResource<Texture>("../shared/textures/Whiskers_diffuse.png");
 
         std::sr1::shared_ptr<Entity> catEntity = core->AddEntity();
-        std::sr1::shared_ptr<Transform> catTransform = catEntity->AddComponent<Transform>(glm::vec3(0.0f, 0.0f, -8.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+        std::sr1::shared_ptr<Transform> catTransform = catEntity->AddComponent<Transform>(glm::vec3(5.0f, 0.0f, -8.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
         std::sr1::shared_ptr<Material> catMaterial = catEntity->AddComponent<Material>(shader, texture);
         std::sr1::shared_ptr<MeshRenderer> catRenderer = catEntity->AddComponent<MeshRenderer>(mesh, catMaterial);
 
-        // Add a very simple component to it
-        // none yet
+        cameraComponent->SetTargetDirection(catTransform->GetGlobalPosition());
 
         // Start the engine's main loop
         core->Start();

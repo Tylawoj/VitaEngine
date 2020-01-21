@@ -9,6 +9,7 @@ namespace vita
     Transform::Transform(glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale)
     {
         m_position = _position;
+        std::cout << m_position.x << std::endl;
         m_rotation = glm::vec3(glm::radians(_rotation.x),
                                glm::radians(_rotation.y),
                                glm::radians(_rotation.z));
@@ -37,6 +38,7 @@ namespace vita
             {
                 std::sr1::shared_ptr<Transform> parentTransform = m_parent->GetComponent<Transform>();
                 model = model * parentTransform->GetTransformMatrix();
+                return m_position * glm::vec3(model[3]);
             }
 
             else
@@ -48,8 +50,10 @@ namespace vita
             }
         }
 
-        glm::vec3 position = m_position * glm::vec3(model[3]);
-        return position;
+        else
+        {
+            return m_position;
+        }
     }
 
     glm::vec3 Transform::GetGlobalRotation()
@@ -132,7 +136,7 @@ namespace vita
             if (m_parent->HasComponent<Transform>())
             {
                 std::sr1::shared_ptr<Transform> parentTransform = m_parent->GetComponent<Transform>();
-				model = model * parentTransform->GetTransformMatrix();
+                model = model * parentTransform->GetTransformMatrix();
             }
 
             else
@@ -145,10 +149,10 @@ namespace vita
         }
 
         model = glm::scale(model, m_scale);
+        model = glm::translate(model, m_position);
         model = glm::rotate(model, m_rotation.x, glm::vec3(1, 0, 0));
         model = glm::rotate(model, m_rotation.y, glm::vec3(0, 1, 0));
         model = glm::rotate(model, m_rotation.z, glm::vec3(0, 0, 1));
-        model = glm::translate(model, m_position);
         return model;
     }
 

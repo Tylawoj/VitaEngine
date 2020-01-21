@@ -39,7 +39,7 @@ namespace vita
         try
         {
             core->m_screen = std::make_shared<Screen>(_title, _width, _height, _samples);
-            core->m_context = rend::Context::initialize();
+            core->m_rendContext = rend::Context::initialize();
         }
 
         catch (Exception& e)
@@ -95,7 +95,7 @@ namespace vita
 
     std::sr1::shared_ptr<rend::Context> Core::GetContext()
     {
-        return m_context;
+        return m_rendContext;
     }
 
     std::sr1::shared_ptr<Screen> Core::GetScreen()
