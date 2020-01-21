@@ -27,7 +27,7 @@ int main()
         std::sr1::shared_ptr<Texture> texture = core->AddResource<Texture>("../shared/textures/Whiskers_diffuse.png");
 
         std::sr1::shared_ptr<Entity> catEntity = core->AddEntity();
-        std::sr1::shared_ptr<Transform> catTransform = catEntity->AddComponent<Transform>(glm::vec3(5.0f, 0.0f, -8.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+        std::sr1::shared_ptr<Transform> catTransform = catEntity->AddComponent<Transform>(glm::vec3(0.0f, 0.0f, -8.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
         std::sr1::shared_ptr<Material> catMaterial = catEntity->AddComponent<Material>(shader, texture);
         std::sr1::shared_ptr<MeshRenderer> catRenderer = catEntity->AddComponent<MeshRenderer>(mesh, catMaterial);
 
@@ -37,6 +37,7 @@ int main()
   //      catMusic->SetAutoRemove(true);
 
         cameraComponent->SetTargetDirection(catTransform->GetGlobalPosition());
+    //    cameraComponent->RotateTargetDirection(glm::vec3(0.0f, 0.0f, 0.0f));
 
         // Start the engine's main loop
         core->Start();

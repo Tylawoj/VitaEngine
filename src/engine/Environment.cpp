@@ -7,6 +7,11 @@ namespace vita
         m_previousTick = std::chrono::system_clock::now();
     }
 
+    void Environment::OnTick()
+    {
+        m_previousTick = std::chrono::system_clock::now();
+    }
+
     float Environment::GetDeltaTime()
     {
         std::chrono::system_clock::time_point deltaTime = std::chrono::system_clock::now();

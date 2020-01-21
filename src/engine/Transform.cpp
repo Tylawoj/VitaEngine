@@ -147,11 +147,11 @@ namespace vita
             }
         }
 
-        model = glm::scale(model, m_scale);
         model = glm::translate(model, m_position);
         model = glm::rotate(model, m_rotation.x, glm::vec3(1, 0, 0));
         model = glm::rotate(model, m_rotation.y, glm::vec3(0, 1, 0));
         model = glm::rotate(model, m_rotation.z, glm::vec3(0, 0, 1));
+        model = glm::scale(model, m_scale);
         return model;
     }
 

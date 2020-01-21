@@ -9,6 +9,7 @@ namespace vita
     Camera::Camera(float _fov, glm::vec3 _target)
     {
         m_fov = _fov;
+        m_up = glm::vec3(0.0f, 1.0f, 0.0f);
         m_target = glm::normalize(_target);
     }
 
@@ -36,7 +37,6 @@ namespace vita
         model = glm::rotate(model, glm::radians(_rotation.y), glm::vec3(0, 1, 0));
         model = glm::rotate(model, glm::radians(_rotation.z), glm::vec3(0, 0, 1));
         model = glm::translate(model, m_target);
-
         m_target = glm::normalize(glm::vec3(model[3]));
     }
 
@@ -49,13 +49,7 @@ namespace vita
     {
         glm::vec3 position = GetEntity()->GetComponent<Transform>()->GetGlobalPosition();
 
-        glm::vec3 right = glm::vec3(m_target.z, 0, m_target.x);
-		right = glm::normalize(right);
-
-        glm::vec3 up = glm::cross(m_target, right);
-        up = glm::normalize(up);
-
-        return glm::lookAt(position, position + m_target, up);
+        return glm::lookAt(position, position + m_target, m_up);
     }
 
 }

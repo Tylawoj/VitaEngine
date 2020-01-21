@@ -133,10 +133,14 @@ namespace vita
                 }
             }
 
+            m_input->UpdateInput();
+
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
             {
                 (*entityIterator)->Tick();
             }
+
+            m_input->ClearInput();
 
             m_screen->ClearScreen();
 
@@ -166,6 +170,8 @@ namespace vita
 
                 start = std::chrono::system_clock::now();
             }
+
+            m_environment->OnTick();
         }
     }
 

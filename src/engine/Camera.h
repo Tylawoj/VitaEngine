@@ -7,6 +7,7 @@ namespace vita
     {
         private:
             float m_fov;
+            glm::vec3 m_up;
             glm::vec3 m_target;
             glm::mat4 m_projectionMatrix;
         public:
