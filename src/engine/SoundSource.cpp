@@ -8,13 +8,12 @@ namespace vita
 {
     void SoundSource::OnInit()
     {
-        m_autoRemove = false;
-        m_playStatus = true;
+        m_hasPlayedYet = false;
     }
 
     void SoundSource::OnTick()
     {
-        if (m_playStatus)
+        if (m_playStatus && !m_hasPlayedYet)
         {
             glm::vec3 soundPosition = GetEntity()->GetComponent<Transform>()->GetGlobalPosition();
             glm::vec3 listenerPosition = GetCurrentCamera()->GetPosition();
@@ -26,6 +25,18 @@ namespace vita
 
             m_playStatus = false;
         }
+
+        else if (m_hasPlayedYet)
+        {
+            ALint state = 0;
+
+            alGetSourcei(m_sourceId, AL_SOURCE_STATE, &state);
+
+            if (state == AL_STOPPED && m_removeAfterPlay)
+            {
+                Kill();
+            }
+        }
     }
 
     void SoundSource::StopPlaying()
@@ -35,7 +46,7 @@ namespace vita
 
     bool SoundSource::GetAutoRemove()
     {
-        return m_autoRemove;
+        return m_removeAfterPlay;
     }
 
     ALuint SoundSource::GetSourceId()
@@ -43,12 +54,14 @@ namespace vita
         return m_sourceId;
     }
 
-    SoundSource::SoundSource(std::sr1::shared_ptr<Sound> _sound)
+    SoundSource::SoundSource(std::sr1::shared_ptr<Sound> _sound, bool _playOnInit, bool _removeAfterPlay)
     {
         m_sourceId = 0;
         alGenSources(1, &m_sourceId);
 
         m_sound = _sound;
+        m_playStatus = _playOnInit;
+        m_removeAfterPlay = _removeAfterPlay;
     }
 
     SoundSource::~SoundSource()
@@ -56,9 +69,9 @@ namespace vita
         alDeleteSources(1, &m_sourceId);
     }
 
-    void SoundSource::SetAutoRemove(bool _autoRemove)
+    void SoundSource::SetAutoRemove(bool _removeAfterPlay)
     {
-        m_autoRemove = _autoRemove;
+        m_removeAfterPlay = _removeAfterPlay;
     }
 
     void SoundSource::SetToPlay(bool _playStatus)

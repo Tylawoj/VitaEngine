@@ -32,7 +32,7 @@ int main()
         std::sr1::shared_ptr<MeshRenderer> catRenderer = catEntity->AddComponent<MeshRenderer>(mesh, catMaterial);
 
         std::sr1::shared_ptr<Sound> music = core->AddResource<Sound>("../shared/sounds/gameMusic.ogg");
-        std::sr1::shared_ptr<SoundSource> catMusic = catEntity->AddComponent<SoundSource>(music);
+        std::sr1::shared_ptr<SoundSource> catMusic = catEntity->AddComponent<SoundSource>(music, true, true);
    //     catMusic->SetToPlay(true);
   //      catMusic->SetAutoRemove(true);
 

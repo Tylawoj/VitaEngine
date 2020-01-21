@@ -3,6 +3,7 @@
 #include "Environment.h"
 #include "Exception.h"
 #include "Entity.h"
+#include "Input.h"
 #include "Resource.h"
 #include "Screen.h"
 #include "SoundSource.h"
@@ -23,22 +24,44 @@ namespace vita
         return entity;
     }
 
+    void Core::CheckForDeadResources()
+    {
+        for (std::list<std::sr1::shared_ptr<Resource>>::iterator resourceIterator = m_resources->m_resources.begin();
+             resourceIterator != m_resources->m_resources.end();)
+        {
+            if (!(*resourceIterator)->IsAlive())
+            {
+                resourceIterator = m_resources->m_resources.erase(resourceIterator);
+            }
+
+            else
+            {
+                resourceIterator++;
+            }
+        }
+    }
+
     std::sr1::shared_ptr<Camera> Core::GetCurrentCamera()
     {
         return m_camera;
     }
 
-    void Core::SetCurrentCamera(std::sr1::shared_ptr<Camera> _camera)
+    std::sr1::shared_ptr<Environment> Core::GetEnvironment()
     {
-        m_camera = _camera;
+        return m_environment;
+    }
+
+    std::sr1::shared_ptr<Input> Core::GetInput()
+    {
+        return m_input;
     }
 
     std::sr1::shared_ptr<Core> Core::Init(std::string _title, int _width, int _height, int _samples)
     {
         std::sr1::shared_ptr<Core> core = std::make_shared<Core>();
         core->m_self = core;
-
         core->m_audio = std::make_shared<Audio>();
+        core->m_input = std::make_shared<Input>();
 
         try
         {
@@ -71,46 +94,19 @@ namespace vita
         return core;
     }
 
-    void Core::Start()
-    {
-        m_isRunning = true;
-    }
-
-    void Core::Stop()
-    {
-        m_isRunning = false;
-    }
-
-    void Core::CheckForDeadResources()
-    {
-        for (std::list<std::sr1::shared_ptr<Resource>>::iterator resourceIterator = m_resources->m_resources.begin();
-             resourceIterator != m_resources->m_resources.end();)
-        {
-            if (!(*resourceIterator)->IsAlive())
-            {
-                resourceIterator = m_resources->m_resources.erase(resourceIterator);
-            }
-
-            else
-            {
-                resourceIterator++;
-            }
-        }
-    }
-
     std::sr1::shared_ptr<rend::Context> Core::GetContext()
     {
         return m_rendContext;
     }
 
-    std::sr1::shared_ptr<Screen> Core::GetScreen()
-    {
-        return m_screen;
-    }
-
     std::sr1::shared_ptr<Resources> Core::GetResources()
     {
         return m_resources;
+    }
+
+    std::sr1::shared_ptr<Screen> Core::GetScreen()
+    {
+        return m_screen;
     }
 
     void Core::Run()
@@ -140,20 +136,6 @@ namespace vita
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
             {
                 (*entityIterator)->Tick();
-
-                if ((*entityIterator)->HasComponent<SoundSource>())
-                {
-                    std::sr1::shared_ptr<SoundSource> soundSource = (*entityIterator)->GetComponent<SoundSource>();
-                    ALuint sourceId = soundSource->GetSourceId();
-                    ALint state = 0;
-
-                    alGetSourcei(sourceId, AL_SOURCE_STATE, &state);
-
-                    if (state == AL_STOPPED && soundSource->GetAutoRemove())
-                    {
-                        soundSource->Kill();
-                    }
-                }
             }
 
             m_screen->ClearScreen();
@@ -185,5 +167,20 @@ namespace vita
                 start = std::chrono::system_clock::now();
             }
         }
+    }
+
+    void Core::SetCurrentCamera(std::sr1::shared_ptr<Camera> _camera)
+    {
+        m_camera = _camera;
+    }
+
+    void Core::Start()
+    {
+        m_isRunning = true;
+    }
+
+    void Core::Stop()
+    {
+        m_isRunning = false;
     }
 }

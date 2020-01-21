@@ -8,7 +8,7 @@
 #include "engine/Entity.h"
 #include "engine/Environment.h"
 #include "engine/Exception.h"
-#include "engine/Keyboard.h"
+#include "engine/Input.h"
 #include "engine/Material.h"
 #include "engine/Mesh.h"
 #include "engine/MeshRenderer.h"

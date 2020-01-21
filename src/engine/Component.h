@@ -8,8 +8,8 @@ namespace vita
     class Camera;
     class Core;
     class Entity;
-    class Keyboard;
     class Environment;
+    class Input;
     class Resources;
     class Transform;
 
@@ -23,7 +23,6 @@ namespace vita
 
         public:
             virtual void OnInit() {}
-            virtual void OnBegin() {}
             virtual void OnTick() {}
             virtual void OnDisplay() {}
             bool IsAlive();
@@ -32,8 +31,8 @@ namespace vita
             std::sr1::shared_ptr<Entity> GetEntity();
             std::sr1::shared_ptr<Camera> GetCurrentCamera();
             std::sr1::shared_ptr<Core> GetCore();
-            std::sr1::shared_ptr<Keyboard> GetKeyboard() {}
-            std::sr1::shared_ptr<Environment> GetEnvironment() {}
+            std::sr1::shared_ptr<Input> GetInput();
+            std::sr1::shared_ptr<Environment> GetEnvironment();
             std::sr1::shared_ptr<Resources> GetResources();
     };
 }

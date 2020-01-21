@@ -3,11 +3,10 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Environment.h"
-#include "Keyboard.h"
+#include "Input.h"
 
 namespace vita
 {
-
     std::sr1::shared_ptr<Entity> Component::GetEntity()
     {
         return m_entity.lock();
@@ -16,6 +15,16 @@ namespace vita
     std::sr1::shared_ptr<Core> Component::GetCore()
     {
         return m_entity.lock()->GetCore();
+    }
+
+    std::sr1::shared_ptr<Environment> Component::GetEnvironment()
+    {
+        return m_entity.lock()->GetCore()->GetEnvironment();
+    }
+
+    std::sr1::shared_ptr<Input> Component::GetInput()
+    {
+        return m_entity.lock()->GetCore()->GetInput();
     }
 
     std::sr1::shared_ptr<Resources> Component::GetResources()
@@ -37,11 +46,4 @@ namespace vita
     {
         m_alive = false;
     }
-    //std::shared_ptr<Keyboard> Component::getKeyboard()
-    //{
-    //}
-    //
-    //std::shared_ptr<Environment> Component::getEnvironment()
-    //{
-    //}
 }

@@ -10,10 +10,11 @@ namespace vita
         private:
             std::sr1::shared_ptr<Sound> m_sound;
             ALuint m_sourceId;
-            bool m_autoRemove;
+            bool m_hasPlayedYet;
             bool m_playStatus;
+            bool m_removeAfterPlay;
         public:
-            SoundSource(std::sr1::shared_ptr<Sound> _sound);
+            SoundSource(std::sr1::shared_ptr<Sound> _sound, bool _playOnInit, bool _removeAfterPlay);
             void OnInit();
             void OnTick();
             bool IsPlaying();
