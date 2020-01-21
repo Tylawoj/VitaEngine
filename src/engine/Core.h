@@ -2,8 +2,6 @@
  *  @brief Core class responsible for storing the core of the engine, along with its required members.
  */
 
-#include <AL/al.h>
-#include <AL/alc.h>
 #include <rend/rend.h>
 #include <sr1/noncopyable> ///< Noncopyable class is used to disallow from copying the Core to another pointer.
 #include <sr1/memory>
@@ -13,6 +11,7 @@
 
 namespace vita
 {
+    class Audio;
     class Camera;
     class Entity;
     class Environment;
@@ -25,7 +24,7 @@ namespace vita
 
         private:
             std::sr1::weak_ptr<Core> m_self;
-            std::sr1::shared_ptr<ALCcontext> m_audioContext;
+            std::sr1::shared_ptr<Audio> m_audio;
             std::sr1::shared_ptr<Camera> m_camera;
             std::sr1::shared_ptr<rend::Context> m_rendContext;
             std::sr1::shared_ptr<Environment> m_environment;

@@ -40,6 +40,11 @@ namespace vita
         m_target = glm::normalize(glm::vec3(model[3]));
     }
 
+    glm::vec3 Camera::GetPosition()
+    {
+        return GetEntity()->GetComponent<Transform>()->GetGlobalPosition();
+    }
+
     glm::mat4 Camera::GetViewMatrix()
     {
         glm::vec3 position = GetEntity()->GetComponent<Transform>()->GetGlobalPosition();

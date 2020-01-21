@@ -9,5 +9,7 @@ namespace vita
             ALuint m_bufferId;
         public:
             void OnLoad(const std::string& _path);
+            ALuint GetBufferId();
+            ~Sound();
     };
 }

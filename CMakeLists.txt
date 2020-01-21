@@ -41,8 +41,8 @@ endif()
 
 target_link_libraries(VitaEngine rend)
 
-add_executable(afos2
+add_executable(dontfall
         src/game/main.cpp
 )
 
-target_link_libraries(afos2 VitaEngine)
+target_link_libraries(dontfall VitaEngine)

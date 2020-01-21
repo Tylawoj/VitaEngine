@@ -6,7 +6,7 @@ using namespace vita;
 int main()
 {
     // Initialize our engine
-    std::string gameTitle = "Aliens from Outer Space 2";
+    std::string gameTitle = "Don't Fall";
     int screenWidth = 1280;
     int screenHeight = 960;
     int samples = 16;
@@ -30,6 +30,11 @@ int main()
         std::sr1::shared_ptr<Transform> catTransform = catEntity->AddComponent<Transform>(glm::vec3(5.0f, 0.0f, -8.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
         std::sr1::shared_ptr<Material> catMaterial = catEntity->AddComponent<Material>(shader, texture);
         std::sr1::shared_ptr<MeshRenderer> catRenderer = catEntity->AddComponent<MeshRenderer>(mesh, catMaterial);
+
+        std::sr1::shared_ptr<Sound> music = core->AddResource<Sound>("../shared/sounds/gameMusic.ogg");
+        std::sr1::shared_ptr<SoundSource> catMusic = catEntity->AddComponent<SoundSource>(music);
+   //     catMusic->SetToPlay(true);
+  //      catMusic->SetAutoRemove(true);
 
         cameraComponent->SetTargetDirection(catTransform->GetGlobalPosition());
 

@@ -9,7 +9,6 @@ namespace vita
     Transform::Transform(glm::vec3 _position, glm::vec3 _rotation, glm::vec3 _scale)
     {
         m_position = _position;
-        std::cout << m_position.x << std::endl;
         m_rotation = glm::vec3(glm::radians(_rotation.x),
                                glm::radians(_rotation.y),
                                glm::radians(_rotation.z));

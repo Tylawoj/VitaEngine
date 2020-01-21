@@ -1,6 +1,7 @@
 #ifndef _VITA_H_
 #define _VITA_H_
 
+#include "engine/Audio.h"
 #include "engine/Camera.h"
 #include "engine/Component.h"
 #include "engine/Core.h"
@@ -15,6 +16,8 @@
 #include "engine/Resources.h"
 #include "engine/Shader.h"
 #include "engine/Screen.h"
+#include "engine/Sound.h"
+#include "engine/SoundSource.h"
 #include "engine/Texture.h"
 #include "engine/Transform.h"
 

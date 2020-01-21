@@ -8,40 +8,40 @@
 namespace vita
 {
 
-std::sr1::shared_ptr<Entity> Component::GetEntity()
-{
-    return m_entity.lock();
-}
+    std::sr1::shared_ptr<Entity> Component::GetEntity()
+    {
+        return m_entity.lock();
+    }
 
-std::sr1::shared_ptr<Core> Component::GetCore()
-{
-    return m_entity.lock()->GetCore();
-}
+    std::sr1::shared_ptr<Core> Component::GetCore()
+    {
+        return m_entity.lock()->GetCore();
+    }
 
-std::sr1::shared_ptr<Resources> Component::GetResources()
-{
-    return m_entity.lock()->GetCore()->GetResources();
-}
+    std::sr1::shared_ptr<Resources> Component::GetResources()
+    {
+        return m_entity.lock()->GetCore()->GetResources();
+    }
 
-std::sr1::shared_ptr<Camera> Component::GetCurrentCamera()
-{
-    return m_entity.lock()->GetCore()->GetCurrentCamera();
-}
+    std::sr1::shared_ptr<Camera> Component::GetCurrentCamera()
+    {
+        return m_entity.lock()->GetCore()->GetCurrentCamera();
+    }
 
-bool Component::IsAlive()
-{
-    return m_alive;
-}
+    bool Component::IsAlive()
+    {
+        return m_alive;
+    }
 
-void Component::Kill()
-{
-    m_alive = false;
-}
-//std::shared_ptr<Keyboard> Component::getKeyboard()
-//{
-//}
-//
-//std::shared_ptr<Environment> Component::getEnvironment()
-//{
-//}
+    void Component::Kill()
+    {
+        m_alive = false;
+    }
+    //std::shared_ptr<Keyboard> Component::getKeyboard()
+    //{
+    //}
+    //
+    //std::shared_ptr<Environment> Component::getEnvironment()
+    //{
+    //}
 }

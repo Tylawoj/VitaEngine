@@ -16,6 +16,7 @@ namespace vita
              * @param _target The direction vector.
              */
             void SetTargetDirection(glm::vec3 _target);
+            glm::vec3 GetPosition();
             void OnInit();
             void RotateTargetDirection(glm::vec3 _rotation);
             glm::mat4 GetProjectionMatrix();
