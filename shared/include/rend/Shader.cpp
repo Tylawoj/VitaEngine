@@ -80,8 +80,18 @@ void Shader::render(const std::sr1::shared_ptr<RenderTexture>& target)
 
 void Shader::render()
 {
-  glEnable(GL_DEPTH_TEST); pollForError();
-  glEnable(GL_CULL_FACE); pollForError();
+    if (m_depthTesting)
+    {
+        glEnable(GL_DEPTH_TEST); pollForError();
+        glEnable(GL_CULL_FACE); pollForError();
+    }
+
+    else
+    {
+        glDisable(GL_DEPTH_TEST); pollForError();
+        glDisable(GL_CULL_FACE); pollForError();
+    }
+
   glEnable(GL_BLEND); pollForError();
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); pollForError();
 
@@ -161,8 +171,23 @@ void Shader::render()
   glUseProgram(0); pollForError();
 
   glDisable(GL_BLEND); pollForError();
-  glDisable(GL_CULL_FACE); pollForError();
-  glDisable(GL_DEPTH_TEST); pollForError();
+
+  if (m_depthTesting)
+  {
+      glDisable(GL_CULL_FACE); pollForError();
+      glDisable(GL_DEPTH_TEST); pollForError();
+  }
+
+  else
+  {
+      glDisable(GL_CULL_FACE); pollForError();
+      glDisable(GL_DEPTH_TEST); pollForError();
+  }
+}
+
+void Shader::setDepthTesting(bool _depthTesting)
+{
+    m_depthTesting = _depthTesting;
 }
 
 void Shader::setSampler(const std::string& variable, const std::sr1::shared_ptr<TextureAdapter>& value)

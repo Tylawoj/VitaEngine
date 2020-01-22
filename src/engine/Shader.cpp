@@ -1,5 +1,6 @@
 #include "Shader.h"
 #include "Exception.h"
+#include <rend/rend.h>
 #include <fstream>
 
 namespace vita

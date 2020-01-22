@@ -20,7 +20,6 @@ namespace vita
             std::sr1::weak_ptr<Entity> m_self;
             void CheckForDeadComponents();
         public:
-            void CollisionCheck();
             void CollisionUpdate();
             void Init();
             void Display();

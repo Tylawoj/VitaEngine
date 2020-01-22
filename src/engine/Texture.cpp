@@ -1,8 +1,8 @@
 #include "Texture.h"
 #include "Exception.h"
+#include <rend/rend.h>
 #define STB_IMAGE_IMPLEMENTATION ///< This define is necessary to use stb_image.
 #include <stb/stb_image.h>
-#include <rend/rend.h>
 
 namespace vita
 {

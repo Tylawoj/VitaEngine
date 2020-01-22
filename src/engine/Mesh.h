@@ -1,18 +1,19 @@
 #include "Resource.h"
-#include "rend/rend.h"
+#include <sr1/memory>
+
+namespace rend
+{
+    struct Mesh;
+}
 
 namespace vita
 {
-    class MeshRenderer;
-
     class Mesh : public Resource
     {
-        friend class vita::MeshRenderer;
-
         private:
             std::sr1::shared_ptr<rend::Mesh> m_mesh;
-            std::sr1::shared_ptr<rend::Mesh> GetRendMesh();
         public:
+            std::sr1::shared_ptr<rend::Mesh> GetRendMesh();
             void OnLoad(const std::string& _path);
     };
 }

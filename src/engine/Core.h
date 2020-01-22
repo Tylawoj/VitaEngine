@@ -2,13 +2,17 @@
  *  @brief Core class responsible for storing the core of the engine, along with its required members.
  */
 
-#include <rend/rend.h>
 #include <sr1/noncopyable> ///< Noncopyable class is used to disallow from copying the Core to another pointer.
 #include <sr1/memory>
 #include <list>
 
 #include "Entity.h"
 #include "Resources.h"
+
+namespace rend
+{
+    struct Context;
+}
 
 namespace vita
 {

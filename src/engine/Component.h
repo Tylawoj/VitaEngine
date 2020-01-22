@@ -14,6 +14,7 @@ namespace vita
     class Core;
     class Entity;
     class Environment;
+    class GUI;
     class Input;
     class Resources;
     class Transform;
@@ -32,7 +33,6 @@ namespace vita
             virtual void OnGUI() {}
             virtual void OnInit() {}
             virtual void OnTick() {}
-            virtual void OnCollisionCheck() {}
             virtual void OnCollisionUpdate() {}
             virtual void OnDisplay() {}
             bool IsAlive();
@@ -53,6 +53,7 @@ namespace vita
              * @return The core of the engine.
              */
             std::sr1::shared_ptr<Core> GetCore();
+            std::sr1::shared_ptr<GUI> GetGUI();
             /**
              * @brief Returns the Input class, storing keyboard
              * and mouse input.

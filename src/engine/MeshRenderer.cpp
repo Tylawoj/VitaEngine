@@ -18,11 +18,6 @@ namespace vita
         m_material = _material;
     }
 
-    void MeshRenderer::OnInit()
-    {
-        m_buffer = GetCore()->GetContext()->createBuffer();
-    }
-
     void MeshRenderer::OnDisplay()
     {
         if (m_mesh != NULL && m_material != NULL)

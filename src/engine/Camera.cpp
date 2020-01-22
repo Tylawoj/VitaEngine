@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "Screen.h"
 #include "Transform.h"
+#include <glm/ext.hpp>
 
 namespace vita
 {

@@ -30,6 +30,8 @@ struct Shader : public std::sr1::noncopyable
   void setSource(const std::string& source);
   void parse(const std::string& source);
 
+  void setDepthTesting(bool _depthTesting);
+
   void setUniform(const std::string& variable, float value);
   void setUniform(const std::string& variable, mat4 value);
   void setUniform(const std::string& variable, vec2 value);
@@ -42,6 +44,7 @@ struct Shader : public std::sr1::noncopyable
 private:
   friend struct Context;
 
+  bool m_depthTesting = true;
   std::sr1::shared_ptr<Context> context;
   std::sr1::zero_initialized<GLuint> id;
   std::sr1::vector<std::sr1::shared_ptr<VariableInfo> > cache;

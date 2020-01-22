@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Environment.h"
+#include "GUI.h"
 #include "Input.h"
 
 namespace vita
@@ -20,6 +21,11 @@ namespace vita
     std::sr1::shared_ptr<Environment> Component::GetEnvironment()
     {
         return m_entity.lock()->GetCore()->GetEnvironment();
+    }
+
+    std::sr1::shared_ptr<GUI> Component::GetGUI()
+    {
+        return m_entity.lock()->GetCore()->GetGUI();
     }
 
     std::sr1::shared_ptr<Input> Component::GetInput()

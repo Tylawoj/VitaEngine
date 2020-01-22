@@ -9,6 +9,7 @@
 #include "Screen.h"
 #include "SoundSource.h"
 #include "Transform.h"
+#include <rend/rend.h>
 #include <SDL2/SDL.h>
 #include <chrono>
 
@@ -68,7 +69,6 @@ namespace vita
         core->m_self = core;
         core->m_audio = std::make_shared<Audio>();
         core->m_input = std::make_shared<Input>();
-        core->m_gui = std::make_shared<GUI>();
 
         try
         {
@@ -98,6 +98,9 @@ namespace vita
 
         core->m_environment = std::make_shared<Environment>();
 
+   //     core->m_gui = std::make_shared<GUI>();
+    //    core->m_gui->m_core = core;
+//
         return core;
     }
 
@@ -129,6 +132,7 @@ namespace vita
         }
 
         m_environment->Init();
+  //      m_gui->Init();
 
         while (m_isRunning)
         {
@@ -148,11 +152,6 @@ namespace vita
             }
 
             m_input->ClearInput();
-
-            for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
-            {
-                (*entityIterator)->CollisionCheck();
-            }
 
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
             {

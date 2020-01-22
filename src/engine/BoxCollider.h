@@ -1,5 +1,5 @@
 #include "Component.h"
-#include <glm/ext.hpp>
+#include <glm/vec3.hpp>
 
 namespace vita
 {
@@ -13,7 +13,6 @@ namespace vita
             glm::vec3 GetCollisionResponse(glm::vec3 _position, glm::vec3 _size);
         public:
             BoxCollider(glm::vec3 _size, glm::vec3 _offset, bool _solid);
-            void OnCollisionCheck();
             void OnCollisionUpdate();
             void SetSize(glm::vec3 _size);
             void SetOffset(glm::vec3 _offset);

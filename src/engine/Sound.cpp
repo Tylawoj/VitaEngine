@@ -1,6 +1,8 @@
 #include "Sound.h"
 #include "Exception.h"
 #include <stb/stb_vorbis.h>
+#include <vector>
+
 namespace vita
 {
     void Sound::OnLoad(const std::string &_path)

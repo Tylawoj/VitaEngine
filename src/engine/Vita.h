@@ -9,6 +9,7 @@
 #include "engine/Entity.h"
 #include "engine/Environment.h"
 #include "engine/Exception.h"
+#include "engine/GUI.h"
 #include "engine/Input.h"
 #include "engine/Material.h"
 #include "engine/Mesh.h"

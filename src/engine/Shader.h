@@ -1,5 +1,9 @@
 #include "Resource.h"
-#include <rend/rend.h>
+
+namespace rend
+{
+    struct Shader;
+}
 
 namespace vita
 {

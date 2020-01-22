@@ -43,6 +43,8 @@ target_link_libraries(VitaEngine rend)
 
 add_executable(dontfall
         src/game/main.cpp
+        src/game/Player.cpp
+        src/game/Player.h
 )
 
 target_link_libraries(dontfall VitaEngine)
