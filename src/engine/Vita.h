@@ -2,6 +2,7 @@
 #define _VITA_H_
 
 #include "engine/Audio.h"
+#include "engine/BoxCollider.h"
 #include "engine/Camera.h"
 #include "engine/Component.h"
 #include "engine/Core.h"

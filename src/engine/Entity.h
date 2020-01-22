@@ -1,3 +1,6 @@
+#ifndef _VITA_ENTITY_H_
+#define _VITA_ENTITY_H_
+
 #include "Component.h"
 #include "Exception.h"
 #include <sr1/memory>
@@ -17,6 +20,8 @@ namespace vita
             std::sr1::weak_ptr<Entity> m_self;
             void CheckForDeadComponents();
         public:
+            void CollisionCheck();
+            void CollisionUpdate();
             void Init();
             void Display();
             std::sr1::shared_ptr<Core> GetCore();
@@ -68,3 +73,5 @@ namespace vita
 //        template <typename T, typename A, typename B, typename C> std::shared_ptr<T> addComponent(A a, B b, C c);
     };
 }
+
+#endif

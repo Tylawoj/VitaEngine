@@ -7,14 +7,15 @@
 #include <sr1/memory>
 #include <list>
 
+#include "Entity.h"
 #include "Resources.h"
 
 namespace vita
 {
     class Audio;
     class Camera;
-    class Entity;
     class Environment;
+    class GUI;
     class Input;
     class Screen;
 
@@ -29,6 +30,7 @@ namespace vita
             std::sr1::weak_ptr<Core> m_self;
             std::sr1::shared_ptr<Environment> m_environment;
             std::list<std::sr1::shared_ptr<Entity>> m_entities;
+            std::sr1::shared_ptr<GUI> m_gui;
             std::sr1::shared_ptr<Input> m_input;
             std::sr1::shared_ptr<Resources> m_resources;
             std::sr1::shared_ptr<Screen> m_screen;
@@ -40,10 +42,26 @@ namespace vita
                 return m_resources->Load<T>(_path);
             }
 
+            template<typename T> std::sr1::vector<std::sr1::shared_ptr<Entity>> GetEntities()
+            {
+                std::sr1::vector<std::sr1::shared_ptr<Entity>> entities;
+
+                for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
+                {
+                    if ((*entityIterator)->HasComponent<T>())
+                    {
+                        entities.push_back(*entityIterator);
+                    }
+                }
+
+                return entities;
+            }
+
             std::sr1::shared_ptr<Entity> AddEntity();
             std::sr1::shared_ptr<Camera> GetCurrentCamera();
             std::sr1::shared_ptr<Environment> GetEnvironment();
             std::sr1::shared_ptr<Input> GetInput();
+            std::sr1::shared_ptr<GUI> GetGUI();
             std::sr1::shared_ptr<Screen> GetScreen();
             std::sr1::shared_ptr<rend::Context> GetContext();
             std::sr1::shared_ptr<Resources> GetResources();
@@ -52,5 +70,5 @@ namespace vita
             void Start();
             void Stop();
             void Run();
-	};
+    };
 }

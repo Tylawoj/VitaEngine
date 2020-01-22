@@ -3,6 +3,7 @@
 #include "Environment.h"
 #include "Exception.h"
 #include "Entity.h"
+#include "GUI.h"
 #include "Input.h"
 #include "Resource.h"
 #include "Screen.h"
@@ -51,6 +52,11 @@ namespace vita
         return m_environment;
     }
 
+    std::sr1::shared_ptr<GUI> Core::GetGUI()
+    {
+        return m_gui;
+    }
+
     std::sr1::shared_ptr<Input> Core::GetInput()
     {
         return m_input;
@@ -62,6 +68,7 @@ namespace vita
         core->m_self = core;
         core->m_audio = std::make_shared<Audio>();
         core->m_input = std::make_shared<Input>();
+        core->m_gui = std::make_shared<GUI>();
 
         try
         {
@@ -141,6 +148,16 @@ namespace vita
             }
 
             m_input->ClearInput();
+
+            for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
+            {
+                (*entityIterator)->CollisionCheck();
+            }
+
+            for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
+            {
+                (*entityIterator)->CollisionUpdate();
+            }
 
             m_screen->ClearScreen();
 

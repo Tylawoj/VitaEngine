@@ -11,6 +11,65 @@ namespace vita
         return m_core.lock();
     }
 
+    void Entity::CollisionCheck()
+    {
+        for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
+        {
+            try
+            {
+                (*componentIterator)->OnCollisionCheck();
+            }
+
+            catch (Exception& e)
+            {
+                std::cout << "Engine Exception: " << e.What() << std::endl;
+                std::cout << "The component will been removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }
+
+            catch (std::exception& e)
+            {
+                std::cout << "System Exception: " << e.what() << std::endl;
+                std::cout << "The component will be removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }
+        }
+
+        CheckForDeadComponents();
+    }
+
+    void Entity::CollisionUpdate()
+    {
+        for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end(); componentIterator++)
+        {
+            try
+            {
+                (*componentIterator)->OnCollisionUpdate();
+            }
+
+            catch (Exception& e)
+            {
+                std::cout << "Engine Exception: " << e.What() << std::endl;
+                std::cout << "The component will been removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }
+
+            catch (std::exception& e)
+            {
+                std::cout << "System Exception: " << e.what() << std::endl;
+                std::cout << "The component will be removed." << std::endl;
+
+                (*componentIterator)->Kill();
+            }
+        }
+
+        CheckForDeadComponents();
+    }
+
+
     void Entity::CheckForDeadComponents()
     {
         for (std::list<std::sr1::shared_ptr<Component>>::iterator componentIterator = m_components.begin(); componentIterator != m_components.end();)

@@ -49,10 +49,7 @@ namespace vita
             }
         }
 
-        else
-        {
-            return m_position;
-        }
+        return m_position;
     }
 
     glm::vec3 Transform::GetGlobalRotation()
@@ -116,6 +113,47 @@ namespace vita
         }
     }
 
+    glm::vec3 Transform::GetGlobalScale()
+    {
+        glm::mat4 model(1.0f);
+
+        if (m_setAsChild)
+        {
+            if (m_parent->HasComponent<Transform>())
+            {
+                std::sr1::shared_ptr<Transform> parentTransform = m_parent->GetComponent<Transform>();
+                model = model * parentTransform->GetTransformMatrix();
+            }
+
+            else
+            {
+                std::cout << "Engine Warning: A Transform was set as a child node of another Transform, but could not find parent's Transform." << std::endl;
+                std::cout << "Its parent will be removed, and the used GetRotation() function will only use local values." << std::endl;
+                m_parent = NULL;
+                m_setAsChild = false;
+                return m_scale;
+            }
+
+            /** Reference: https://stackoverflow.com/questions/29229611/quaternion-to-axis-angles
+             *  https://stackoverflow.com/questions/17918033/glm-decompose-mat4-into-translation-and-rotation */
+
+            glm::vec3 scale;
+            glm::quat rotation;
+            glm::vec3 translation;
+            glm::vec3 skew;
+            glm::vec4 perspective;
+
+            glm::decompose(model, scale, rotation, translation, skew, perspective);
+
+            return scale;
+        }
+
+        else
+        {
+            return m_scale;
+        }
+    }
+
     glm::vec3 Transform::GetLocalPosition()
     {
         return m_position;
@@ -124,6 +162,11 @@ namespace vita
     glm::vec3 Transform::GetLocalRotation()
     {
         return m_rotation;
+    }
+
+    glm::vec3 Transform::GetLocalScale()
+    {
+        return m_scale;
     }
 
     glm::mat4 Transform::GetTransformMatrix()

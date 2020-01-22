@@ -19,8 +19,10 @@ namespace vita
             void RemoveChildStatus();
             glm::vec3 GetGlobalPosition();
             glm::vec3 GetGlobalRotation();
+            glm::vec3 GetGlobalScale();
             glm::vec3 GetLocalPosition();
             glm::vec3 GetLocalRotation();
+            glm::vec3 GetLocalScale();
             glm::mat4 GetTransformMatrix();
             void SetLocalPosition(glm::vec3 _position);
             void SetLocalRotation(glm::vec3 _rotation);
