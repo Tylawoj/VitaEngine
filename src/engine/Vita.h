@@ -1,3 +1,7 @@
+/** @file Vita.h
+ *  @brief File including all classes of the VitaEngine.
+ */
+
 #ifndef _VITA_H_
 #define _VITA_H_
 

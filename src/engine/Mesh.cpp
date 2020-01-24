@@ -1,3 +1,7 @@
+/** @file Mesh.cpp
+ *  @brief Implementation of functions for the Mesh class.
+ */
+
 #include "Mesh.h"
 #include "Exception.h"
 #include <rend/rend.h>
@@ -12,8 +16,10 @@ namespace vita
 
     void Mesh::OnLoad(const std::string &_path)
     {
+        /// Creates a rend's Mesh.
         m_mesh = GetContext()->createMesh();
 
+        /// Open the file from the specified path.
         std::ifstream meshFile(_path.c_str());
 
         if (!meshFile.is_open())
@@ -23,6 +29,7 @@ namespace vita
 
         std::string meshSource;
 
+        /// Store the file's content into a string.
         while(!meshFile.eof())
         {
           std::string line;
@@ -32,6 +39,7 @@ namespace vita
 
         meshFile.close();
 
+        /// Parse the string with the mesh to rend.
         m_mesh->parse(meshSource);
     }
 }

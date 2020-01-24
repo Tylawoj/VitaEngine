@@ -1,3 +1,10 @@
+/** @file Component.cpp
+ *  @brief Implementation of functions for the Component class.
+ *
+ *  The functions below serve as shortcuts for Components to
+ *  obtain major class members of the Core.
+ */
+
 #include "Component.h"
 #include "Camera.h"
 #include "Core.h"

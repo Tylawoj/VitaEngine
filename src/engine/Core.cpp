@@ -1,3 +1,7 @@
+/** @file Core.cpp
+ *  @brief Implementation of functions for the Core class.
+ */
+
 #include "Core.h"
 #include "Audio.h"
 #include "Environment.h"
@@ -9,7 +13,6 @@
 #include "Screen.h"
 #include "SoundSource.h"
 #include "Transform.h"
-#include <rend/rend.h>
 #include <SDL2/SDL.h>
 #include <chrono>
 
@@ -18,11 +21,14 @@ namespace vita
     std::sr1::shared_ptr<Entity> Core::AddEntity()
     {
         std::sr1::shared_ptr<Entity> entity = std::make_shared<Entity>();
+        /// Sets the core and entity weak_ptrs in the created Entity.
         entity->m_self = entity;
         entity->m_core = m_self;
 
+        /// Pushes back the entity onto the entities list.
         m_entities.push_back(entity);
 
+        /// Returns the entity.
         return entity;
     }
 
@@ -31,6 +37,7 @@ namespace vita
         for (std::list<std::sr1::shared_ptr<Resource>>::iterator resourceIterator = m_resources->m_resources.begin();
              resourceIterator != m_resources->m_resources.end();)
         {
+            /// Checks whether the resource is alive, and if not, erases it from the list, destroying it.
             if (!(*resourceIterator)->IsAlive())
             {
                 resourceIterator = m_resources->m_resources.erase(resourceIterator);
@@ -67,11 +74,15 @@ namespace vita
     {
         std::sr1::shared_ptr<Core> core = std::make_shared<Core>();
         core->m_self = core;
+        /// Constructs the Audio and Input members.
         core->m_audio = std::make_shared<Audio>();
         core->m_input = std::make_shared<Input>();
+        core->m_input->m_core = core;
 
         try
         {
+            /** These lines are set in a try-catch statement as they are trying to
+             *  initialize SDL2, OpenGL and OpenAL, which may throw exceptions. */
             core->m_screen = std::make_shared<Screen>(_title, _width, _height, _samples);
             core->m_rendContext = rend::Context::initialize();
             core->m_audio->Init();
@@ -82,6 +93,7 @@ namespace vita
             std::cout << "Critical Engine Exception: " << e.What() << std::endl;
             std::cout << "The engine will quit." << std::endl;
 
+            /// As the engine cannot run without SDL2, OpenGL or OpenAL, it has to quit.
             return NULL;
         }
 
@@ -90,6 +102,7 @@ namespace vita
             std::cout << "Critical System Exception: " << e.what() << std::endl;
             std::cout << "The engine will quit." << std::endl;
 
+            /// As the engine cannot run without SDL2, OpenGL or OpenAL, it has to quit.
             return NULL;
         }
 
@@ -97,10 +110,10 @@ namespace vita
         core->m_resources->m_core = core;
 
         core->m_environment = std::make_shared<Environment>();
+        core->m_gui = std::make_shared<GUI>();
+        core->m_gui->m_core = core;
+        core->m_gui->Init();
 
-   //     core->m_gui = std::make_shared<GUI>();
-    //    core->m_gui->m_core = core;
-//
         return core;
     }
 
@@ -121,54 +134,60 @@ namespace vita
 
     void Core::Run()
     {
+        /// Creates a timer for garbage collecting the resources.
         std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
         std::chrono::system_clock::time_point now;
 
-        SDL_Event event = { 0 };
-
         for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
         {
+            /// Initializes all Components in the entities stored in Core.
             (*entityIterator)->Init();
         }
 
+        /// Initializes the environment here to get an accurate previous tick measurement.
         m_environment->Init();
-  //      m_gui->Init();
 
         while (m_isRunning)
         {
-            while (SDL_PollEvent(&event) != 0)
-            {
-                if (event.type == SDL_QUIT)
-                {
-                    m_isRunning = false;
-                }
-            }
-
+            /// Checks for inputs in this tick.
             m_input->UpdateInput();
 
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
             {
+                /// Calls the OnTick() function in Components of each Entity stored.
                 (*entityIterator)->Tick();
             }
 
+            /// Clears the stored pressed and released keys/mouse buttons.
             m_input->ClearInput();
 
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
             {
+                /// Calls the OnCollisionUpdate() function in Components of each Entity stored.
                 (*entityIterator)->CollisionUpdate();
             }
 
+            /// Clears the screen from the previous render.
             m_screen->ClearScreen();
 
             for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
             {
+                /// Calls the OnGUI() function in Components of each Entity stored.
+                (*entityIterator)->GUI();
+            }
+
+            for (std::list<std::sr1::shared_ptr<Entity>>::iterator entityIterator = m_entities.begin(); entityIterator != m_entities.end(); entityIterator++)
+            {
+                /// Calls the OnDisplay() function in Components of each Entity stored.
                 (*entityIterator)->Display();
             }
 
+            /// Swaps the window with the current OpenGL render.
             m_screen->GLSwapWindow();
 
             now = std::chrono::system_clock::now();
 
+            /// Checks each second for resources no longer used.
             if (std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count() > 1000)
             {
                 std::list<std::sr1::shared_ptr<Resource>>::iterator resourceIterator;
@@ -187,6 +206,7 @@ namespace vita
                 start = std::chrono::system_clock::now();
             }
 
+            /// Stores the time of this tick.
             m_environment->OnTick();
         }
     }

@@ -1,8 +1,13 @@
+/** @file Material.cpp
+ *  @brief Implementation of functions for the Material class.
+ */
+
 #include "Material.h"
 #include "Core.h"
 #include "Resources.h"
 #include "Shader.h"
 #include "Texture.h"
+#include <rend/rend.h>
 
 namespace vita
 {
@@ -14,6 +19,8 @@ namespace vita
 
     Material::Material(std::string& _shaderPath, std::string& _texturePath)
     {
+        /** Creates a Shader and Texture using the specified file paths,
+         *  and sets them as class members. */
         m_shader = GetResources()->Load<Shader>(_shaderPath);
         m_texture = GetResources()->Load<Texture>(_texturePath);
     }

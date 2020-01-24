@@ -1,21 +1,31 @@
+/** @file Input.cpp
+ *  @brief Implementation of functions for the Input class.
+ */
+
 #include "Input.h"
+#include "Core.h"
+#include <SDL2/SDL.h>
 
 namespace vita
 {
     Input::Input()
     {
+        /// Initialize the vectors.
         m_keyCodes = std::sr1::vector<bool>(112, false);
         m_keyCodesPressed = std::sr1::vector<bool>(112, false);
         m_keyCodesReleased = std::sr1::vector<bool>(112, false);
         m_mouseButtons = std::sr1::vector<bool>(5, false);
         m_mouseButtonsPressed = std::sr1::vector<bool>(5, false);
         m_mouseButtonsReleased = std::sr1::vector<bool>(5, false);
+        /// Set the initial mouse motion to 0.
         m_mouseMotionX = 0;
         m_mouseMotionY = 0;
+        m_event = { 0 };
     }
 
     void Input::ClearInput()
     {
+        /// Set all keys and mouse buttons pressed or released to false.
         for (std::sr1::vector<bool>::iterator keyCodePressedIterator = m_keyCodesPressed.begin(); keyCodePressedIterator != m_keyCodesPressed.end(); keyCodePressedIterator++)
         {
             (*keyCodePressedIterator) = false;
@@ -36,6 +46,7 @@ namespace vita
             (*mouseButtonReleasedIterator) = false;
         }
 
+        /// Set the mouse motion to 0.
         m_mouseMotionX = 0;
         m_mouseMotionY = 0;
     }
@@ -84,10 +95,14 @@ namespace vita
     {
         while (SDL_PollEvent(&m_event))
         {
-            // check for messages
+            /// Check the event type.
             switch (m_event.type)
             {
-                // check for keypresses
+                /// If the user quits the window, this means that the core must stop.
+                case SDL_QUIT:
+                    m_core.lock()->Stop();
+                    break;
+                /// Check for key presses.
                 case SDL_KEYDOWN:
                     switch(m_event.key.keysym.sym)
                     {
@@ -543,7 +558,7 @@ namespace vita
                             break;
                     }
                     break;
-
+                /// Check for key releases.
                 case SDL_KEYUP:
                     switch(m_event.key.keysym.sym)
                     {
@@ -999,7 +1014,7 @@ namespace vita
                             break;
                     }
                     break;
-
+                /// Check for mouse button presses.
                 case SDL_MOUSEBUTTONDOWN:
                     switch(m_event.button.button)
                     {
@@ -1025,7 +1040,7 @@ namespace vita
                             break;
                     }
                     break;
-
+                /// Check for mouse button releases.
                 case SDL_MOUSEBUTTONUP:
                     switch(m_event.button.button)
                     {
@@ -1051,7 +1066,7 @@ namespace vita
                             break;
                     }
                     break;
-
+                /// Check for mouse movements.
                 case SDL_MOUSEMOTION:
                     m_mouseMotionX = m_event.motion.x;
                     m_mouseMotionY = m_event.motion.y;
@@ -1060,6 +1075,6 @@ namespace vita
                 default:
                     break;
             }
-        } // end of message processing
+        }
     }
 }

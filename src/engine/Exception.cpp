@@ -1,3 +1,7 @@
+/** @file Exception.cpp
+ *  @brief Implementation of functions for the Exception class.
+ */
+
 #include "Exception.h"
 #include <iostream>
 

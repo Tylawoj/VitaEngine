@@ -3,8 +3,7 @@
  */
 
 #include "Component.h"
-#include <glm/mat4x4.hpp>
-#include <glm/vec3.hpp>
+#include <glm/ext.hpp>
 
 namespace vita
 {
@@ -14,7 +13,7 @@ namespace vita
             float m_fov; ///< Field of view.
             glm::vec3 m_up; ///< Defines where the up direction is in the world.
             glm::vec3 m_target; ///< Target direction.
-            glm::mat4 m_projectionMatrix;
+            glm::mat4 m_projectionMatrix; ///< Projection matrix, using current screen size.
         public:
             /**
              * @brief Sets the starting FOV and target direction.

@@ -26,18 +26,10 @@ namespace vita
         friend class vita::Entity;
 
         private:
-            std::sr1::weak_ptr<Entity> m_entity;
+            std::sr1::weak_ptr<Entity> m_entity; ///< Weak_ptr to Entity containing this component.
             bool m_alive; ///< Defines whether the component should be still in the scene.
 
         public:
-            virtual void OnGUI() {}
-            virtual void OnInit() {}
-            virtual void OnTick() {}
-            virtual void OnCollisionUpdate() {}
-            virtual void OnDisplay() {}
-            bool IsAlive();
-            void Kill();
-
             /**
              * @brief Returns the owner entity.
              * @return The entity that stores this component.
@@ -53,6 +45,10 @@ namespace vita
              * @return The core of the engine.
              */
             std::sr1::shared_ptr<Core> GetCore();
+            /**
+             * @brief Returns the GUI, allowing to draw 2D textures on screen.
+             * @return The GUI allowing to draw 2D textures on screen.
+             */
             std::sr1::shared_ptr<GUI> GetGUI();
             /**
              * @brief Returns the Input class, storing keyboard
@@ -72,6 +68,23 @@ namespace vita
              * @return The Resources class with currently used resources.
              */
             std::sr1::shared_ptr<Resources> GetResources();
+            /**
+             * @brief Returns whether the component is alive or not (still in the scene).
+             * @return Returns if the component is alive or not.
+             */
+            bool IsAlive();
+            /// @brief Kills the component, removing it from the scene.
+            void Kill();
+            /// @brief Allows components to perform actions dependent on collision.
+            virtual void OnCollisionUpdate() {}
+            /// @brief Allows components to render after all physics calculations.
+            virtual void OnDisplay() {}
+            /// @brief Allows components to draw GUI textures.
+            virtual void OnGUI() {}
+            /// @brief Allows components to initialize themselves.
+            virtual void OnInit() {}
+            /// @brief Allows components to perform actions on each tick.
+            virtual void OnTick() {}
     };
 }
 

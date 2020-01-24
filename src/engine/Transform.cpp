@@ -1,3 +1,7 @@
+/** @file Transform.cpp
+ *  @brief Implementation of functions for the Transform class.
+ */
+
 #include "Transform.h"
 #include "Exception.h"
 #include "Entity.h"
@@ -31,12 +35,15 @@ namespace vita
     {
         glm::mat4 model(1.0f);
 
+        /** If this transform was set as a child of another Transform,
+         *  multiply the model matrix by the parent's transformation matrix. This can go recursive. */
         if (m_setAsChild)
         {
             if (m_parent->HasComponent<Transform>())
             {
                 std::sr1::shared_ptr<Transform> parentTransform = m_parent->GetComponent<Transform>();
                 model = model * parentTransform->GetTransformMatrix();
+                /// Extract the position from the transformation matrix and multiply by the local position.
                 return m_position * glm::vec3(model[3]);
             }
 
@@ -49,6 +56,7 @@ namespace vita
             }
         }
 
+        /// If there is no parent set, just return local position.
         return m_position;
     }
 
@@ -56,6 +64,8 @@ namespace vita
     {
         glm::mat4 model(1.0f);
 
+        /** If this transform was set as a child of another Transform,
+         *  multiply the model matrix by the parent's transformation matrix. This can go recursive. */
         if (m_setAsChild)
         {
             if (m_parent->HasComponent<Transform>())
@@ -73,14 +83,16 @@ namespace vita
                 return m_rotation;
             }
 
-            /** Reference: https://stackoverflow.com/questions/29229611/quaternion-to-axis-angles
-             *  https://stackoverflow.com/questions/17918033/glm-decompose-mat4-into-translation-and-rotation */
-
             glm::vec3 scale;
             glm::quat rotation;
             glm::vec3 translation;
             glm::vec3 skew;
             glm::vec4 perspective;
+
+            /** Decompose the transformation matrix to receive the rotation, converting it into
+             *  axis-angled rotation.
+             *  Reference: https://stackoverflow.com/questions/29229611/quaternion-to-axis-angles
+             *  https://stackoverflow.com/questions/17918033/glm-decompose-mat4-into-translation-and-rotation */
 
             glm::decompose(model, scale, rotation, translation, skew, perspective);
 
@@ -107,6 +119,7 @@ namespace vita
             return axisAngledRotation;
         }
 
+        /// If there is no parent set, just return local rotation.
         else
         {
             return m_rotation;
@@ -117,6 +130,8 @@ namespace vita
     {
         glm::mat4 model(1.0f);
 
+        /** If this transform was set as a child of another Transform,
+         *  multiply the model matrix by the parent's transformation matrix. This can go recursive. */
         if (m_setAsChild)
         {
             if (m_parent->HasComponent<Transform>())
@@ -134,20 +149,21 @@ namespace vita
                 return m_scale;
             }
 
-            /** Reference: https://stackoverflow.com/questions/29229611/quaternion-to-axis-angles
-             *  https://stackoverflow.com/questions/17918033/glm-decompose-mat4-into-translation-and-rotation */
-
             glm::vec3 scale;
             glm::quat rotation;
             glm::vec3 translation;
             glm::vec3 skew;
             glm::vec4 perspective;
 
+            /** Decompose the transformation matrix to receive the rotation, converting it into
+             *  axis-angled rotation.
+             *  Reference: https://stackoverflow.com/questions/17918033/glm-decompose-mat4-into-translation-and-rotation */
             glm::decompose(model, scale, rotation, translation, skew, perspective);
 
             return scale;
         }
 
+        /// If there is no parent set, just return local scale.
         else
         {
             return m_scale;
@@ -173,6 +189,8 @@ namespace vita
     {
         glm::mat4 model(1.0f);
 
+        /** If this transform was set as a child of another Transform,
+         *  multiply the model matrix by the parent's transformation matrix. This can go recursive. */
         if (m_setAsChild)
         {
             if (m_parent->HasComponent<Transform>())
@@ -190,6 +208,7 @@ namespace vita
             }
         }
 
+        /// Translate, rotate and scale the transformation matrix with the local values.
         model = glm::translate(model, m_position);
         model = glm::rotate(model, m_rotation.x, glm::vec3(1, 0, 0));
         model = glm::rotate(model, m_rotation.y, glm::vec3(0, 1, 0));
