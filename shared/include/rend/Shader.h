@@ -30,7 +30,7 @@ struct Shader : public std::sr1::noncopyable
   void setSource(const std::string& source);
   void parse(const std::string& source);
 
-  void setDepthTesting(bool _depthTesting);
+  void setDepthTesting (bool _depthTesting);
 
   void setUniform(const std::string& variable, float value);
   void setUniform(const std::string& variable, mat4 value);

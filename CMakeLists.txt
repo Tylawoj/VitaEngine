@@ -41,10 +41,10 @@ endif()
 
 target_link_libraries(VitaEngine rend)
 
-add_executable(dontfall
+add_executable(VitaDemo
         src/game/main.cpp
         src/game/Player.cpp
         src/game/Player.h
 )
 
-target_link_libraries(dontfall VitaEngine)
+target_link_libraries(VitaDemo VitaEngine)
